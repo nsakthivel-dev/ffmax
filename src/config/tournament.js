@@ -103,7 +103,7 @@ export const TOURNAMENT_CONFIG = {
       isPlayable: true,
       max: 96, // Single registration pool of 96 players
       defaultRegistered: 55, // Live registration count
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-REGISTRATION-PLACEHOLDER/viewform",
+      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdbiU8lWiPD2eG4LUNXNtph6YyGaxfdDMfTfA-FxvMV48TkvQ/viewform?usp=publish-editor",
       matchDivision: [
         {
           id: "match-01",

@@ -248,6 +248,7 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
               onClick={() => {
                 onClose();
                 if (onSelectMatch) onSelectMatch();
+                else window.location.hash = 'select-match';
               }}
               className="btn-tactical flex-1 py-3 px-4 sm:px-6 rounded-xl font-heading font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 min-h-[44px]"
             >

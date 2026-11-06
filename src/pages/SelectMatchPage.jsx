@@ -29,6 +29,8 @@ export default function SelectMatchPage({ onBack }) {
     (m) => m.id === 'map-01' || m.name === 'BERMUDA'
   ) || TOURNAMENT_CONFIG.maps[0];
 
+  const registrationFormUrl = bermudaMap?.googleFormUrl || "https://docs.google.com/forms/d/e/1FAIpQLSdbiU8lWiPD2eG4LUNXNtph6YyGaxfdDMfTfA-FxvMV48TkvQ/viewform?usp=publish-editor";
+
   const [slotData, setSlotData] = useState({});
   const [loading, setLoading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -267,7 +269,7 @@ export default function SelectMatchPage({ onBack }) {
               </button>
             ) : (
               <a
-                href={bermudaMap.googleFormUrl}
+                href={registrationFormUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-tactical w-full py-4 sm:py-5 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-heading font-black text-sm xs:text-base sm:text-lg tracking-wider shadow-2xl shadow-amber-500/40 transition-all uppercase flex items-center justify-center gap-2 sm:gap-3 group min-h-[48px]"

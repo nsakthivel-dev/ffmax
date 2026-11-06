@@ -201,7 +201,7 @@ export default function MapCard({
                 if (onSelectMatch) {
                   onSelectMatch();
                 } else {
-                  onOpenDetails(map);
+                  window.location.hash = 'select-match';
                 }
               }}
               className={`w-full py-2.5 px-3 rounded-xl font-heading font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1 group shadow-md pointer-events-auto ${
