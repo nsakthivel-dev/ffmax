@@ -29,16 +29,18 @@ export const TOURNAMENT_CONFIG = {
     downloadName: "FFM-FreeFireMAX-Tournament-Poster.jpeg"
   },
 
-  // Key Tournament Metrics - Two Separate Solo Matches
+  // Key Tournament Metrics - Single Registration Pool (96 Total Slots)
   stats: {
     totalMaps: 6,
     availableMaps: 1, // Only Bermuda is active
-    totalMatches: 2,  // Two independent Solo Matches
+    totalMatches: 2,  // Two matches divided by organizer after 96 registrations
+    totalRegistrationPool: 96, // Single pool of 96 players
+    totalCapacity: 96, // Total tournament capacity: 96 unique players
+    totalPlayers: 96,
+    defaultRegistered: 55, // Live registration count
+    playersPerMatch: 48, // 48 players per match post-division
     match1Capacity: 48,
     match2Capacity: 48,
-    playersPerMatch: 48,
-    totalCapacity: 96, // 48 unique players in Match 1 + 48 different unique players in Match 2
-    totalPlayers: 96,
     match1Prize: 1000, // ₹1,000 for Match 1 Winner
     match2Prize: 1000, // ₹1,000 for Match 2 Winner
     winnerPrizePerMatch: 1000, // ₹1,000 per match champion
@@ -84,7 +86,8 @@ export const TOURNAMENT_CONFIG = {
   },
 
   // Maps Configuration (6 Maps)
-  // Only BERMUDA is OPEN with Two Independent Solo Matches (48 Players each = 96 Total).
+  // Only BERMUDA is OPEN with a Single 96-Player Registration Pool.
+  // After registration closes, the organizer divides the 96 players into Match 1 & Match 2 (48 players each).
   // The other 5 maps are COMING SOON.
   maps: [
     {
@@ -98,10 +101,10 @@ export const TOURNAMENT_CONFIG = {
       image: "/assets/maps/bermuda.webp",
       status: "OPEN",
       isPlayable: true,
-      max: 96, // 48 players in Match 1 + 48 players in Match 2
-      defaultRegistered: 55, // 34 in Match 1 + 21 in Match 2
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform",
-      matches: [
+      max: 96, // Single registration pool of 96 players
+      defaultRegistered: 55, // Live registration count
+      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-REGISTRATION-PLACEHOLDER/viewform",
+      matchDivision: [
         {
           id: "match-01",
           number: 1,
@@ -109,9 +112,8 @@ export const TOURNAMENT_CONFIG = {
           title: "MATCH 1 – BERMUDA SOLO",
           mode: "SOLO",
           map: "Bermuda",
-          max: 48,
-          defaultRegistered: 34,
-          googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform",
+          players: 48,
+          prize: 1000,
         },
         {
           id: "match-02",
@@ -120,9 +122,8 @@ export const TOURNAMENT_CONFIG = {
           title: "MATCH 2 – BERMUDA SOLO",
           mode: "SOLO",
           map: "Bermuda",
-          max: 48,
-          defaultRegistered: 21,
-          googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-02-PLACEHOLDER/viewform",
+          players: 48,
+          prize: 1000,
         }
       ]
     },
@@ -217,13 +218,13 @@ export const TOURNAMENT_CONFIG = {
     },
     {
       id: 3,
-      title: "Match Structure",
-      desc: "Two separate matches will be conducted, with a maximum of 48 players in each match."
+      title: "Tournament Structure",
+      desc: "A total of 96 players will register for one tournament. After registration closes, the organizer will divide them into two separate matches of 48 players each."
     },
     {
       id: 4,
       title: "Registration",
-      desc: "Each player can register for only one match. Duplicate Free Fire MAX UIDs across both matches are not allowed."
+      desc: "Each player can register only once. Duplicate Free Fire MAX UIDs are not allowed."
     },
     {
       id: 5,
@@ -238,7 +239,7 @@ export const TOURNAMENT_CONFIG = {
     {
       id: 7,
       title: "Match Participation",
-      desc: "Players must join the custom room on time and follow the official instructions regarding room ID and password."
+      desc: "Players must follow official announcements for their assigned match, schedule, room ID, and password."
     },
     {
       id: 8,

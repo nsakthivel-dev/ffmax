@@ -16,7 +16,9 @@ import {
   Radio, 
   RefreshCw,
   Flame,
-  Award
+  Award,
+  Crown,
+  ChevronRight
 } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 import { fetchLiveSlotStatus } from '../services/registrationService';
@@ -26,31 +28,6 @@ export default function SelectMatchPage({ onBack }) {
   const bermudaMap = TOURNAMENT_CONFIG.maps.find(
     (m) => m.id === 'map-01' || m.name === 'BERMUDA'
   ) || TOURNAMENT_CONFIG.maps[0];
-
-  const matches = bermudaMap.matches || [
-    {
-      id: "match-01",
-      number: 1,
-      name: "MATCH 1",
-      title: "MATCH 1 – BERMUDA SOLO",
-      mode: "SOLO",
-      map: "Bermuda",
-      max: 48,
-      defaultRegistered: 34,
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform"
-    },
-    {
-      id: "match-02",
-      number: 2,
-      name: "MATCH 2",
-      title: "MATCH 2 – BERMUDA SOLO",
-      mode: "SOLO",
-      map: "Bermuda",
-      max: 48,
-      defaultRegistered: 21,
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-02-PLACEHOLDER/viewform"
-    }
-  ];
 
   const [slotData, setSlotData] = useState({});
   const [loading, setLoading] = useState(false);
@@ -77,26 +54,13 @@ export default function SelectMatchPage({ onBack }) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
-  // Compute metrics for both matches
-  const match1Slot = slotData?.['match-01'] || {
-    registered: matches[0]?.defaultRegistered ?? 34,
-    max: 48,
-    available: Math.max(0, 48 - (matches[0]?.defaultRegistered ?? 34)),
-    isFull: (matches[0]?.defaultRegistered ?? 34) >= 48,
-    percentage: Math.round(((matches[0]?.defaultRegistered ?? 34) / 48) * 100)
-  };
-
-  const match2Slot = slotData?.['match-02'] || {
-    registered: matches[1]?.defaultRegistered ?? 21,
-    max: 48,
-    available: Math.max(0, 48 - (matches[1]?.defaultRegistered ?? 21)),
-    isFull: (matches[1]?.defaultRegistered ?? 21) >= 48,
-    percentage: Math.round(((matches[1]?.defaultRegistered ?? 21) / 48) * 100)
-  };
-
-  const totalRegistered = match1Slot.registered + match2Slot.registered;
+  // Compute metrics for the single 96-player registration pool
   const totalMax = 96;
+  const registeredCount = slotData?.['map-01']?.registered ?? bermudaMap.defaultRegistered ?? 55;
+  const totalRegistered = Math.min(totalMax, registeredCount);
   const totalAvailable = Math.max(0, totalMax - totalRegistered);
+  const isFull = totalRegistered >= totalMax;
+  const progressPercentage = Math.min(100, Math.round((totalRegistered / totalMax) * 100));
 
   return (
     <div className="min-h-screen text-slate-100 flex flex-col selection:bg-amber-500 selection:text-black relative bg-[#0a0705]">
@@ -124,13 +88,13 @@ export default function SelectMatchPage({ onBack }) {
           <div className="hidden sm:flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
             <span className="text-xs font-tech font-bold text-amber-400 tracking-widest uppercase">
-              BERMUDA SOLO ARENA // MATCH SELECTION PORTAL
+              BERMUDA SOLO ARENA // SINGLE REGISTRATION PORTAL
             </span>
           </div>
 
           {/* Telemetry Capsule */}
           <div className="flex items-center gap-2 text-xs font-tech">
-            <span className="text-slate-400 hidden xs:inline">SLOTS REMAINING:</span>
+            <span className="text-slate-400 hidden xs:inline">REMAINING SLOTS:</span>
             <span className="px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-bold font-mono">
               {totalAvailable} / 96 LEFT
             </span>
@@ -140,9 +104,9 @@ export default function SelectMatchPage({ onBack }) {
       </header>
 
       {/* Main Full-Page Scrollable Content Container */}
-      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 relative z-10">
 
-        {/* Hero Banner for Bermuda */}
+        {/* Hero Banner for Bermuda Solo Registration */}
         <div className="relative rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl bg-gradient-to-b from-[#1b1008] via-[#120a05] to-[#0e0704] p-6 sm:p-10 mb-8 sm:mb-12">
           {/* Top Fiery Accent Ribbon */}
           <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400" />
@@ -154,18 +118,18 @@ export default function SelectMatchPage({ onBack }) {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-500/20 border border-amber-400/40 text-xs font-tech font-bold text-amber-300 uppercase tracking-widest mb-3">
                 <Flame className="w-3.5 h-3.5 text-orange-400" />
-                <span>OFFICIAL TOURNAMENT BATTLEGROUND • MAP 01</span>
+                <span>OFFICIAL BATTLEGROUND REGISTRATION • SINGLE POOL</span>
               </div>
               <h1 className="text-3xl sm:text-5xl font-black font-heading text-white tracking-wide uppercase">
-                BERMUDA <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-orange-500">SOLO MATCHES</span>
+                BERMUDA SOLO ARENA – <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-orange-500">96 PLAYER POOL</span>
               </h1>
               <p className="mt-3 text-xs sm:text-base text-slate-300 font-tech leading-relaxed">
-                Choose between <strong className="text-amber-300">Match 1</strong> or <strong className="text-orange-400">Match 2</strong>. Each match operates as an independent 48-player custom room lobby with its own champion receiving a <strong className="text-emerald-400">₹1,000 cash prize</strong>. Total capacity: 96 unique players.
+                One common registration pool for all 96 players. After registration concludes, the organizer (<strong className="text-amber-300">{TOURNAMENT_CONFIG.host.name}</strong>) will manually divide all 96 registered warriors into two separate 48-player matches with independent <strong className="text-emerald-400">₹1,000 cash prizes</strong> for each match winner.
               </p>
 
               {/* Hotspots */}
               <div className="mt-4 flex flex-wrap items-center gap-2">
-                <span className="text-xs font-tech text-slate-400 uppercase font-semibold">Key Hotspots:</span>
+                <span className="text-xs font-tech text-slate-400 uppercase font-semibold">Official Hotspots:</span>
                 {bermudaMap.hotspots?.map((spot, i) => (
                   <span key={i} className="text-xs font-tech px-2.5 py-0.5 rounded-md bg-black/60 border border-amber-500/30 text-amber-200">
                     {spot}
@@ -174,287 +138,321 @@ export default function SelectMatchPage({ onBack }) {
               </div>
             </div>
 
-            {/* Quick 4-Item Telemetry Matrix */}
-            <div className="grid grid-cols-2 gap-3 w-full lg:w-auto shrink-0 font-tech text-xs">
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-amber-500/30 text-center">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Total Pool</span>
-                <span className="text-xl font-heading font-black text-amber-300">₹2,000</span>
-                <span className="text-[10px] text-slate-400 block">₹1,000 / Match</span>
+            {/* Total Roster Telemetry Box */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/70 border border-amber-500/40 text-center w-full lg:w-48 shrink-0 font-tech shadow-xl">
+              <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">TOTAL ROSTER TELEMETRY</span>
+              <div className="text-3xl sm:text-4xl font-heading font-black text-emerald-400 mt-1">
+                {totalAvailable} <span className="text-sm font-tech text-slate-300">Slots Left</span>
               </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-amber-500/30 text-center">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Capacity</span>
-                <span className="text-xl font-heading font-black text-emerald-400">96</span>
-                <span className="text-[10px] text-slate-400 block">48 per Match</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-amber-500/30 text-center">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Game Mode</span>
-                <span className="text-sm font-heading font-bold text-white mt-1 block">SOLO BR</span>
-                <span className="text-[10px] text-slate-400 block">No Teaming</span>
-              </div>
-              <div className="p-3.5 rounded-2xl bg-black/60 border border-amber-500/30 text-center">
-                <span className="text-slate-400 block text-[10px] uppercase font-bold">Winners</span>
-                <span className="text-xl font-heading font-black text-orange-400">2</span>
-                <span className="text-[10px] text-slate-400 block">1 per Match</span>
-              </div>
+              <span className="text-xs text-amber-300/90 block mt-1 font-mono">
+                ({totalRegistered} / 96 Players Registered)
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-950/70 border border-amber-500/40 text-xs font-tech text-amber-300 uppercase tracking-widest mb-2">
-            <Gamepad2 className="w-3.5 h-3.5 text-amber-400" />
-            <span>SELECT YOUR BATTLE LOBBY</span>
+        {/* ========================================================= */}
+        {/* SECTION 1: SINGLE UNIFIED REGISTRATION POOL CARD */}
+        {/* ========================================================= */}
+        <div className="hud-card corner-bracket p-6 sm:p-10 rounded-3xl border-2 border-amber-400 shadow-[0_0_50px_rgba(245,158,11,0.25)] relative overflow-hidden bg-gradient-to-b from-[#1c1008] via-[#120a05] to-[#150c07] mb-12 group">
+          {/* Top Fiery Accent Stripe */}
+          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-400 via-yellow-300 to-orange-500" />
+
+          {/* Header Status Bar */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/60 text-xs font-heading font-black text-amber-300 tracking-wider">
+              <Gamepad2 className="w-4 h-4 text-amber-400" />
+              <span>OFFICIAL TOURNAMENT REGISTRATION • BERMUDA SOLO</span>
+            </div>
+
+            <span className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-tech font-bold ${
+              isFull 
+                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
+                : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-lg shadow-emerald-950/40'
+            }`}>
+              <span className={`w-2 h-2 rounded-full ${isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
+              <span>{isFull ? 'REGISTRATION CLOSED (FULL)' : 'STATUS: OPEN'}</span>
+            </span>
           </div>
+
+          {/* Card Title & Mode */}
           <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-white tracking-wide">
-            AVAILABLE <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">SOLO MATCHES</span>
+            COMMON SOLO REGISTRATION POOL
           </h2>
-          <p className="text-xs sm:text-sm font-tech text-slate-300 mt-1">
-            Click on your preferred match below to register via the official form. Remember: each player can register for only ONE match.
+          <p className="text-xs sm:text-sm font-tech text-amber-300/90 mt-1 uppercase tracking-wider">
+            SOLO BATTLE ROYALE • MAP: BERMUDA • ONE UNIFIED ENTRY FOR ALL 96 PLAYERS
           </p>
-        </div>
 
-        {/* The Two Separate Match Cards (Full-Width, Uncramped, High Accessibility) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-10">
-          
-          {/* ========================================= */}
-          {/* MATCH 1 – BERMUDA SOLO CARD */}
-          {/* ========================================= */}
-          <div className="hud-card corner-bracket p-6 sm:p-8 rounded-3xl border-2 border-amber-500/50 hover:border-amber-400 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#180e08]/95 via-[#100905] to-[#150c07] flex flex-col justify-between group transition-all duration-300">
-            {/* Top Accent Stripe */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-400 to-orange-500" />
-
-            <div>
-              {/* Header Badge */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-3.5 py-1.5 rounded-xl bg-amber-500/25 border border-amber-400/60 text-xs font-heading font-black text-amber-300 tracking-wider">
-                  MATCH 1 • BERMUDA
-                </span>
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-tech font-bold ${
-                  match1Slot.isFull 
-                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
-                    : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                }`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${match1Slot.isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-                  <span>{match1Slot.isFull ? 'MATCH FULL' : 'STATUS: OPEN'}</span>
-                </span>
+          {/* Key Registration Statistics (3 Primary Metrics) */}
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            
+            {/* Metric 1: Total Player Capacity */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
+              <span className="text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
+                TOTAL PLAYER CAPACITY
+              </span>
+              <div className="text-3xl sm:text-4xl font-heading font-black text-white mt-2">
+                96
               </div>
-
-              {/* Title & Prize */}
-              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-wide">
-                MATCH 1 – BERMUDA SOLO
-              </h3>
-              <p className="text-xs font-tech text-amber-400 uppercase tracking-wider mt-1">
-                SOLO BATTLE ROYALE • 48 PLAYERS MAX
-              </p>
-
-              {/* Prize Banner */}
-              <div className="mt-5 p-4 rounded-2xl bg-[#22140a]/90 border border-amber-500/35 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-slate-950 font-black shadow-lg">
-                    <Trophy className="w-5 h-5 stroke-[2.2]" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-tech text-slate-400 uppercase tracking-wider font-bold block">
-                      WINNING PRIZE
-                    </span>
-                    <span className="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400 leading-none">
-                      ₹1,000
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-xs font-tech font-bold text-amber-300 block">1 CHAMPION</span>
-                  <span className="text-[10px] text-slate-400">Sole Match Winner</span>
-                </div>
-              </div>
-
-              {/* Match Slot Telemetry */}
-              <div className="mt-5 p-4 rounded-2xl bg-black/60 border border-amber-500/25 space-y-3 font-tech text-xs">
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Match Capacity:</span>
-                  <span className="font-heading font-bold text-white text-sm">48 Players</span>
-                </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Registered Contenders:</span>
-                  <span className="font-heading font-bold text-amber-400 text-sm">
-                    {match1Slot.registered} / 48
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Remaining Slots:</span>
-                  <span className="font-heading font-bold text-emerald-400 text-sm">
-                    {match1Slot.available} SLOTS AVAILABLE
-                  </span>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="pt-1">
-                  <div className="w-full h-3 bg-black/80 rounded-full overflow-hidden border border-amber-500/30 p-0.5">
-                    <div 
-                      className={`h-full rounded-full transition-all duration-700 ${
-                        match1Slot.isFull 
-                          ? 'bg-rose-500' 
-                          : 'bg-gradient-to-r from-amber-500 via-yellow-400 to-orange-400'
-                      }`}
-                      style={{ width: `${Math.min(100, match1Slot.percentage)}%` }}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1.5">
-                    <span>{match1Slot.percentage}% Filled</span>
-                    <span>Locks automatically at 48</span>
-                  </div>
-                </div>
-              </div>
-
+              <span className="text-[11px] font-tech text-slate-400 mt-1">
+                Maximum Registered Limit
+              </span>
             </div>
 
-            {/* Registration CTA Button */}
-            <div className="mt-6 pt-5 border-t border-amber-500/25">
-              {match1Slot.isFull ? (
-                <button
-                  type="button"
-                  disabled
-                  className="w-full py-4 rounded-xl bg-slate-900 border border-slate-700 text-slate-500 font-heading font-bold text-sm uppercase tracking-wider cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  <Lock className="w-4 h-4 text-slate-500" />
-                  <span>MATCH 1 REGISTRATION FULL</span>
-                </button>
-              ) : (
-                <a
-                  href={matches[0]?.googleFormUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-tactical w-full py-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-heading font-black text-sm tracking-wider shadow-xl shadow-amber-500/30 transition-all uppercase flex items-center justify-center gap-2 group"
-                >
-                  <span>REGISTER FOR MATCH 1</span>
-                  <ExternalLink className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-              )}
-              <p className="text-[11px] font-tech text-slate-400 text-center mt-2">
-                Registration requires your verified Free Fire MAX UID.
-              </p>
+            {/* Metric 2: Registered Players */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
+              <span className="text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
+                REGISTERED PLAYERS
+              </span>
+              <div className="text-3xl sm:text-4xl font-heading font-black text-amber-400 mt-2">
+                {totalRegistered} <span className="text-xl font-tech text-slate-400 font-bold">/ 96</span>
+              </div>
+              <span className="text-[11px] font-tech text-amber-300/80 mt-1">
+                {progressPercentage}% Slots Filled
+              </span>
+            </div>
+
+            {/* Metric 3: Available Slots */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
+              <span className="text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
+                AVAILABLE SLOTS
+              </span>
+              <div className="text-3xl sm:text-4xl font-heading font-black text-emerald-400 mt-2">
+                {totalAvailable}
+              </div>
+              <span className="text-[11px] font-tech text-emerald-300/80 mt-1">
+                {totalAvailable} Slots Remaining
+              </span>
             </div>
 
           </div>
 
-          {/* ========================================= */}
-          {/* MATCH 2 – BERMUDA SOLO CARD */}
-          {/* ========================================= */}
-          <div className="hud-card corner-bracket p-6 sm:p-8 rounded-3xl border-2 border-orange-500/50 hover:border-orange-400 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#180e08]/95 via-[#100905] to-[#150c07] flex flex-col justify-between group transition-all duration-300">
-            {/* Top Accent Stripe */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 to-amber-400" />
-
-            <div>
-              {/* Header Badge */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-3.5 py-1.5 rounded-xl bg-orange-500/25 border border-orange-400/60 text-xs font-heading font-black text-orange-300 tracking-wider">
-                  MATCH 2 • BERMUDA
-                </span>
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-tech font-bold ${
-                  match2Slot.isFull 
-                    ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
-                    : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                }`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${match2Slot.isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-                  <span>{match2Slot.isFull ? 'MATCH FULL' : 'STATUS: OPEN'}</span>
-                </span>
-              </div>
-
-              {/* Title & Prize */}
-              <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-wide">
-                MATCH 2 – BERMUDA SOLO
-              </h3>
-              <p className="text-xs font-tech text-orange-400 uppercase tracking-wider mt-1">
-                SOLO BATTLE ROYALE • 48 PLAYERS MAX
-              </p>
-
-              {/* Prize Banner */}
-              <div className="mt-5 p-4 rounded-2xl bg-[#22140a]/90 border border-orange-500/35 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500 to-amber-400 flex items-center justify-center text-slate-950 font-black shadow-lg">
-                    <Trophy className="w-5 h-5 stroke-[2.2]" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-tech text-slate-400 uppercase tracking-wider font-bold block">
-                      WINNING PRIZE
-                    </span>
-                    <span className="text-2xl sm:text-3xl font-heading font-extrabold text-emerald-400 leading-none">
-                      ₹1,000
-                    </span>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <span className="text-xs font-tech font-bold text-orange-300 block">1 CHAMPION</span>
-                  <span className="text-[10px] text-slate-400">Sole Match Winner</span>
-                </div>
-              </div>
-
-              {/* Match Slot Telemetry */}
-              <div className="mt-5 p-4 rounded-2xl bg-black/60 border border-amber-500/25 space-y-3 font-tech text-xs">
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Match Capacity:</span>
-                  <span className="font-heading font-bold text-white text-sm">48 Players</span>
-                </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Registered Contenders:</span>
-                  <span className="font-heading font-bold text-orange-400 text-sm">
-                    {match2Slot.registered} / 48
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-slate-300">
-                  <span>Remaining Slots:</span>
-                  <span className="font-heading font-bold text-emerald-400 text-sm">
-                    {match2Slot.available} SLOTS AVAILABLE
-                  </span>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="pt-1">
-                  <div className="w-full h-3 bg-black/80 rounded-full overflow-hidden border border-amber-500/30 p-0.5">
-                    <div 
-                      className={`h-full rounded-full transition-all duration-700 ${
-                        match2Slot.isFull 
-                          ? 'bg-rose-500' 
-                          : 'bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-400'
-                      }`}
-                      style={{ width: `${Math.min(100, match2Slot.percentage)}%` }}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 mt-1.5">
-                    <span>{match2Slot.percentage}% Filled</span>
-                    <span>Locks automatically at 48</span>
-                  </div>
-                </div>
-              </div>
-
+          {/* Registration Progress Bar (Based on 96 total slots) */}
+          <div className="mt-8 p-5 rounded-2xl bg-black/70 border border-amber-500/30">
+            <div className="flex items-center justify-between text-xs font-tech mb-2">
+              <span className="text-slate-300 font-semibold uppercase">Registration Capacity Progress</span>
+              <span className="font-heading font-bold text-amber-300">
+                {totalRegistered} / 96 Players ({progressPercentage}%)
+              </span>
+            </div>
+            
+            <div className="w-full h-3.5 bg-black/90 rounded-full overflow-hidden border border-amber-500/40 p-0.5">
+              <div 
+                className={`h-full rounded-full transition-all duration-700 ${
+                  isFull 
+                    ? 'bg-rose-500' 
+                    : 'bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300 shadow-[0_0_15px_rgba(245,158,11,0.6)]'
+                }`}
+                style={{ width: `${progressPercentage}%` }}
+              />
             </div>
 
-            {/* Registration CTA Button */}
-            <div className="mt-6 pt-5 border-t border-amber-500/25">
-              {match2Slot.isFull ? (
-                <button
-                  type="button"
-                  disabled
-                  className="w-full py-4 rounded-xl bg-slate-900 border border-slate-700 text-slate-500 font-heading font-bold text-sm uppercase tracking-wider cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  <Lock className="w-4 h-4 text-slate-500" />
-                  <span>MATCH 2 REGISTRATION FULL</span>
-                </button>
-              ) : (
-                <a
-                  href={matches[1]?.googleFormUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-tactical w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-400 hover:from-orange-400 hover:to-amber-300 text-black font-heading font-black text-sm tracking-wider shadow-xl shadow-orange-500/30 transition-all uppercase flex items-center justify-center gap-2 group"
-                >
-                  <span>REGISTER FOR MATCH 2</span>
-                  <ExternalLink className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-              )}
-              <p className="text-[11px] font-tech text-slate-400 text-center mt-2">
-                Registration requires your verified Free Fire MAX UID.
-              </p>
+            <div className="flex items-center justify-between text-[11px] font-tech text-slate-400 mt-2">
+              <span>{isFull ? 'All 96 slots reserved' : `${totalAvailable} slots remaining`}</span>
+              <span className="text-amber-400/80">Auto-locks at 96 submissions</span>
+            </div>
+          </div>
+
+          {/* ONE REGISTER NOW BUTTON */}
+          <div className="mt-8 pt-6 border-t border-amber-500/30">
+            {isFull ? (
+              <button
+                type="button"
+                disabled
+                className="w-full py-5 rounded-2xl bg-slate-900 border border-slate-700 text-slate-500 font-heading font-bold text-base uppercase tracking-wider cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                <Lock className="w-5 h-5 text-slate-500" />
+                <span>REGISTRATION CLOSED • 96/96 SLOTS FULL</span>
+              </button>
+            ) : (
+              <a
+                href={bermudaMap.googleFormUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-tactical w-full py-5 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black font-heading font-black text-base sm:text-lg tracking-wider shadow-2xl shadow-amber-500/40 transition-all uppercase flex items-center justify-center gap-3 group"
+              >
+                <Sparkles className="w-5 h-5 text-black animate-pulse" />
+                <span>REGISTER NOW</span>
+                <ExternalLink className="w-5 h-5 text-black group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            )}
+            <p className="text-xs font-tech text-slate-300 text-center mt-3">
+              * One registration per player. Requires your valid Free Fire MAX UID. Duplicate entries will be automatically discarded.
+            </p>
+          </div>
+
+        </div>
+
+        {/* ========================================================= */}
+        {/* SECTION 2: MATCH DIVISION AFTER REGISTRATION */}
+        {/* ========================================================= */}
+        <div className="mb-12">
+          
+          <div className="text-center max-w-2xl mx-auto mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-950/70 border border-amber-500/40 text-xs font-tech text-amber-300 uppercase tracking-widest mb-2">
+              <Users className="w-3.5 h-3.5 text-amber-400" />
+              <span>POST-REGISTRATION ALLOCATION</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-wide">
+              MATCH DIVISION <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500">AFTER REGISTRATION</span>
+            </h2>
+            <p className="text-xs sm:text-sm font-tech text-slate-300 mt-2 leading-relaxed">
+              Players do <strong>not</strong> choose Match 1 or Match 2 during registration. Once all 96 registration slots are filled, the organizer (<strong className="text-amber-300">{TOURNAMENT_CONFIG.host.name}</strong>) will manually divide the 96 registered players into two separate matches of 48 players each. Official match assignments, schedules, room IDs, and passwords will be announced via official channels.
+            </p>
+          </div>
+
+          {/* Two Divided Match Previews */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            {/* MATCH 1 PREVIEW */}
+            <div className="hud-card corner-bracket p-6 rounded-2xl border border-amber-500/40 bg-gradient-to-b from-[#180e08]/90 via-[#100905] to-[#150c07] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/50 text-xs font-heading font-black text-amber-300 tracking-wider">
+                    MATCH 1
+                  </span>
+                  <span className="text-xs font-tech font-bold text-amber-300">
+                    48 PLAYERS
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-white">
+                  MATCH 1 – BERMUDA SOLO
+                </h3>
+                <p className="text-xs font-tech text-slate-400 mt-0.5 uppercase tracking-wider">
+                  SOLO BATTLE ROYALE • MAP: BERMUDA
+                </p>
+
+                {/* Match Specs */}
+                <div className="mt-4 space-y-2 font-tech text-xs">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Game Mode:</span>
+                    <span className="font-bold text-white font-heading">SOLO</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Map:</span>
+                    <span className="font-bold text-amber-300 font-heading">Bermuda</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Players:</span>
+                    <span className="font-bold text-white font-heading">48 Competitors</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Winner:</span>
+                    <span className="font-bold text-white font-heading">1 Champion</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Prize Tag */}
+              <div className="mt-5 p-3.5 rounded-xl bg-[#22140a] border border-amber-500/35 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <Trophy className="w-5 h-5 text-amber-400" />
+                  <span className="text-xs font-tech text-slate-300 font-bold uppercase">Winning Prize:</span>
+                </div>
+                <span className="text-xl font-heading font-black text-emerald-400">
+                  ₹1,000
+                </span>
+              </div>
+            </div>
+
+            {/* MATCH 2 PREVIEW */}
+            <div className="hud-card corner-bracket p-6 rounded-2xl border border-orange-500/40 bg-gradient-to-b from-[#180e08]/90 via-[#100905] to-[#150c07] flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="px-3 py-1 rounded-lg bg-orange-500/20 border border-orange-400/50 text-xs font-heading font-black text-orange-300 tracking-wider">
+                    MATCH 2
+                  </span>
+                  <span className="text-xs font-tech font-bold text-orange-300">
+                    48 PLAYERS
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-extrabold font-heading text-white">
+                  MATCH 2 – BERMUDA SOLO
+                </h3>
+                <p className="text-xs font-tech text-slate-400 mt-0.5 uppercase tracking-wider">
+                  SOLO BATTLE ROYALE • MAP: BERMUDA
+                </p>
+
+                {/* Match Specs */}
+                <div className="mt-4 space-y-2 font-tech text-xs">
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Game Mode:</span>
+                    <span className="font-bold text-white font-heading">SOLO</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Map:</span>
+                    <span className="font-bold text-amber-300 font-heading">Bermuda</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Players:</span>
+                    <span className="font-bold text-white font-heading">48 Competitors</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <span className="text-slate-400">Winner:</span>
+                    <span className="font-bold text-white font-heading">1 Champion</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Prize Tag */}
+              <div className="mt-5 p-3.5 rounded-xl bg-[#22140a] border border-orange-500/35 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <Trophy className="w-5 h-5 text-orange-400" />
+                  <span className="text-xs font-tech text-slate-300 font-bold uppercase">Winning Prize:</span>
+                </div>
+                <span className="text-xl font-heading font-black text-emerald-400">
+                  ₹1,000
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ========================================================= */}
+        {/* SECTION 3: PRIZE POOL BREAKDOWN */}
+        {/* ========================================================= */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-b from-[#22150a] via-[#160d06] to-[#0e0704] border-2 border-amber-500/50 shadow-2xl mb-12">
+          
+          <div className="text-center mb-6">
+            <span className="text-xs font-tech text-amber-300 uppercase font-bold tracking-widest block">
+              OFFICIAL VERIFIED PURSE
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold font-heading text-white mt-1">
+              TOURNAMENT PRIZE STRUCTURE
+            </h3>
+            <p className="text-xs font-tech text-slate-300 mt-1">
+              Total prize pool is divided across two separate solo matches.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+            
+            <div className="p-4 rounded-2xl bg-black/60 border border-amber-400/50">
+              <span className="text-[10px] font-tech text-slate-400 uppercase font-bold block">TOTAL PRIZE POOL</span>
+              <div className="text-2xl sm:text-3xl font-heading font-black text-amber-300 mt-1">₹2,000</div>
+              <span className="text-[10px] font-tech text-slate-400">2 Matches Combined</span>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/30">
+              <span className="text-[10px] font-tech text-slate-400 uppercase font-bold block">MATCH 1 WINNER</span>
+              <div className="text-2xl sm:text-3xl font-heading font-black text-emerald-400 mt-1">₹1,000</div>
+              <span className="text-[10px] font-tech text-slate-400">1 Match 1 Champion</span>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/30">
+              <span className="text-[10px] font-tech text-slate-400 uppercase font-bold block">MATCH 2 WINNER</span>
+              <div className="text-2xl sm:text-3xl font-heading font-black text-emerald-400 mt-1">₹1,000</div>
+              <span className="text-[10px] font-tech text-slate-400">1 Match 2 Champion</span>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/30">
+              <span className="text-[10px] font-tech text-slate-400 uppercase font-bold block">TOTAL WINNERS</span>
+              <div className="text-2xl sm:text-3xl font-heading font-black text-orange-400 mt-1">2</div>
+              <span className="text-[10px] font-tech text-slate-400">1 Winner Per Match</span>
             </div>
 
           </div>
@@ -468,9 +466,9 @@ export default function SelectMatchPage({ onBack }) {
           </div>
           <div className="flex-1 text-center sm:text-left text-xs sm:text-sm font-tech text-slate-300 leading-relaxed">
             <strong className="text-amber-300 font-heading block text-sm sm:text-base uppercase mb-1">
-              STRICT COMPLIANCE NOTICE – ZERO REPEATED PLAYERS
+              STRICT COMPLIANCE NOTICE – SINGLE REGISTRATION PER PLAYER
             </strong>
-            Every player is permitted to enter <strong className="text-white">only ONE match</strong>. Duplicate submissions across Match 1 and Match 2 using the same Free Fire MAX UID are strictly blocked. Your Room ID &amp; Password will be dispatched via official organizer channels prior to match time.
+            Every player is permitted to register <strong className="text-white">only once</strong>. Duplicate Free Fire MAX UIDs are strictly blocked. After 96 players register, the organizer will announce your assigned match, schedule, custom room ID, and password via official YouTube &amp; Discord channels.
           </div>
         </div>
 
@@ -494,4 +492,3 @@ export default function SelectMatchPage({ onBack }) {
     </div>
   );
 }
-

@@ -126,8 +126,8 @@ export default function PromotionPoster({ onOpenPoster }) {
                     desc: "Classic survival competition with 48 players per map competing in individual skill matchups."
                   },
                   {
-                    title: "Two Separate Matches on Bermuda (96 Unique Players)",
-                    desc: "Match 1 (48 players) & Match 2 (48 different players). Zero repeated players permitted across matches."
+                    title: "Single 96-Player Registration Pool (Divided into 2 Matches)",
+                    desc: "A total of 96 players register in one pool. The organizer manually assigns 48 players to Match 1 and 48 players to Match 2 after registration closes."
                   },
                   {
                     title: "Together For Gaming Community",

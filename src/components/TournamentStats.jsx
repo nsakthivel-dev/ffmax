@@ -64,7 +64,7 @@ export default function TournamentStats({ onSelectMatch }) {
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-orange-500">STRUCTURE &amp; PRIZE VAULT</span>
           </h2>
           <p className="mt-2.5 sm:mt-3 text-xs sm:text-base text-slate-300 font-tech">
-            Engineered for pure competitive excellence. Two independent Solo Matches on Bermuda, 48 players each, with cash rewards for champions and zero player repeats.
+            Engineered for pure competitive excellence. A single 96-player registration pool divided by the organizer into two separate Solo Matches on Bermuda (48 players each), with ₹1,000 champion prizes and zero player repeats.
           </p>
         </div>
 
@@ -83,13 +83,13 @@ export default function TournamentStats({ onSelectMatch }) {
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-500/20 text-xs font-tech">
                   <span className="flex items-center gap-1.5 text-amber-300 font-bold uppercase tracking-wider">
                     <Target className="w-3.5 h-3.5 text-amber-400" />
-                    <span>BERMUDA DUAL MATCH TELEMETRY</span>
+                    <span>BERMUDA REGISTRATION TELEMETRY</span>
                   </span>
                   <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-tech ${
                     isFull ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                   }`}>
                     <span className={`w-1.5 h-1.5 rounded-full ${isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-                    <span>{isFull ? 'MATCHES FULL' : 'STATUS: OPEN'}</span>
+                    <span>{isFull ? 'REGISTRATION FULL' : 'STATUS: OPEN'}</span>
                   </span>
                 </div>
 
@@ -200,7 +200,7 @@ export default function TournamentStats({ onSelectMatch }) {
               {/* Action Link to Maps */}
               <div className="mt-6 pt-4 border-t border-amber-500/20 flex items-center justify-between">
                 <span className="text-xs font-tech text-slate-400">
-                  Select your match on Bermuda
+                  Single 96-slot registration pool on Bermuda
                 </span>
                 <button
                   type="button"
@@ -210,7 +210,7 @@ export default function TournamentStats({ onSelectMatch }) {
                   }}
                   className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors"
                 >
-                  <span>SELECT MATCH</span>
+                  <span>REGISTER NOW</span>
                   <ChevronRight className="w-4 h-4 text-amber-400" />
                 </button>
               </div>
@@ -269,10 +269,10 @@ export default function TournamentStats({ onSelectMatch }) {
                 </div>
                 <div>
                   <div className="font-heading text-sm font-bold text-white tracking-wide">
-                    ONE PLAYER • ONE MATCH REGISTRATION POLICY
+                    ONE REGISTRATION PER PLAYER POLICY
                   </div>
                   <div className="text-xs text-slate-300 font-tech">
-                    Every competitor is permitted to enter exactly 1 match. Duplicate registrations between Match 1 and Match 2 with the same Free Fire MAX UID are strictly prohibited.
+                    Every competitor is permitted to register once for the 96-player tournament. Duplicate registrations with the same Free Fire MAX UID are strictly prohibited.
                   </div>
                 </div>
               </div>

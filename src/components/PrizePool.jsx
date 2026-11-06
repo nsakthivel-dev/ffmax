@@ -109,7 +109,7 @@ export default function PrizePool({ onSelectMatch }) {
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-orange-500">PRIZE POOL</span>
           </h2>
           <p className="mt-3 text-xs sm:text-base text-slate-300 font-tech leading-relaxed max-w-2xl mx-auto">
-            The tournament features a total guaranteed prize pool of <strong className="text-amber-300 font-bold">₹2,000</strong> conducted across two independent solo matches on Bermuda. Each match rewards its champion with an independent <strong className="text-emerald-400 font-bold">₹1,000</strong> cash prize.
+            The tournament features a total guaranteed prize pool of <strong className="text-amber-300 font-bold">₹2,000</strong> conducted across two independent solo matches on Bermuda (48 players each, divided by the organizer after 96 registrations). Each match rewards its champion with an independent <strong className="text-emerald-400 font-bold">₹1,000</strong> cash prize.
           </p>
         </div>
 
@@ -245,7 +245,7 @@ export default function PrizePool({ onSelectMatch }) {
               {/* Action Button */}
               <div className="mt-6 pt-5 border-t border-amber-500/20 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <span className="text-xs font-tech text-slate-400 text-center sm:text-left">
-                  Strict 48 player lobby limit.
+                  48 players allocated per match after registration.
                 </span>
                 <button
                   type="button"
@@ -255,7 +255,7 @@ export default function PrizePool({ onSelectMatch }) {
                   }}
                   className="btn-tactical w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-heading font-black text-xs uppercase tracking-wider hover:from-amber-300 hover:to-orange-400 shadow-lg shadow-amber-500/20 transition-all"
                 >
-                  <span>REGISTER FOR {m.title}</span>
+                  <span>REGISTER NOW (96 SLOTS POOL)</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -271,10 +271,10 @@ export default function PrizePool({ onSelectMatch }) {
             </div>
             <div>
               <div className="font-heading text-sm font-bold text-white tracking-wide">
-                DUAL MATCH PRIZE GOVERNANCE • TOTAL POOL ₹2,000
+                TOURNAMENT PRIZE GOVERNANCE • TOTAL POOL ₹2,000
               </div>
               <div className="text-xs text-slate-300 font-tech">
-                Match 1 Champion receives ₹1,000. Match 2 Champion receives ₹1,000. Each player can register for and participate in only one match. Free Fire MAX UIDs are strictly deduplicated.
+                Match 1 Champion receives ₹1,000. Match 2 Champion receives ₹1,000. Exactly 2 winners total. A single registration pool of 96 players is divided by the organizer into two 48-player matches.
               </div>
             </div>
           </div>

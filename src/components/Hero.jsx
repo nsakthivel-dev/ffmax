@@ -55,16 +55,15 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
             </div>
 
             <p className="mt-3 sm:mt-4 text-xs sm:text-base text-slate-300 font-tech tracking-wide max-w-2xl mx-auto lg:mx-0 leading-relaxed drop-shadow-sm">
-              The premier battle royale showdown. Two independent Solo matches on Bermuda, 48 players per match, exactly 96 total unique competitors. 
-              Register for Match 1 or Match 2 and compete for championship victory.
+              The premier battle royale showdown. A single 96-player registration pool on Bermuda, divided into two separate 48-player matches with ₹1,000 cash prizes for champions.
             </p>
 
-            {/* Asymmetrical High-Impact Telemetry HUD Cards (Displaying 48 Max Capacity & 2 Matches) */}
+            {/* Asymmetrical High-Impact Telemetry HUD Cards (Displaying 96 Max Capacity, 2 Matches & ₹2000 Purse) */}
             <div className="mt-5 sm:mt-6 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
-                <div className="text-xl sm:text-3xl font-extrabold font-heading text-amber-400">48</div>
-                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">PER MATCH</div>
-                <div className="w-6 sm:w-8 h-0.5 bg-amber-400/40 rounded-full mt-1 sm:mt-1.5" />
+                <div className="text-xl sm:text-3xl font-extrabold font-heading text-emerald-400">96</div>
+                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">TOTAL SLOTS</div>
+                <div className="w-6 sm:w-8 h-0.5 bg-emerald-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
                 <div className="text-xl sm:text-3xl font-extrabold font-heading text-orange-400">02</div>
@@ -72,9 +71,9 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
                 <div className="w-6 sm:w-8 h-0.5 bg-orange-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
-                <div className="text-xl sm:text-3xl font-extrabold font-heading text-emerald-400">96</div>
-                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">TOTAL PLAYERS</div>
-                <div className="w-6 sm:w-8 h-0.5 bg-emerald-400/40 rounded-full mt-1 sm:mt-1.5" />
+                <div className="text-xl sm:text-3xl font-extrabold font-heading text-amber-400">₹2,000</div>
+                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">TOTAL POOL</div>
+                <div className="w-6 sm:w-8 h-0.5 bg-amber-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
             </div>
 
@@ -88,7 +87,7 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
                 }}
                 className="btn-tactical clip-corner w-full sm:w-auto px-6 py-3.5 text-sm sm:text-base font-black text-black bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/40 transition-all font-heading tracking-wider inline-flex items-center justify-center gap-2 group uppercase"
               >
-                <span>REGISTER NOW (BERMUDA SOLO)</span>
+                <span>REGISTER NOW (96 SLOTS POOL)</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 

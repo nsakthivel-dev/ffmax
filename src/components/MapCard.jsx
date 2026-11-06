@@ -134,7 +134,7 @@ export default function MapCard({
           ) : (
             <div>
               <div className="flex items-center justify-between text-xs font-tech mb-1.5">
-                <span className="text-slate-400">2 Matches Capacity:</span>
+                <span className="text-slate-400">Total Capacity:</span>
                 <span className="font-semibold">
                   <strong className={isFull ? 'text-rose-400 font-heading text-sm' : 'text-emerald-400 font-heading text-sm'}>
                     {available}
@@ -210,7 +210,7 @@ export default function MapCard({
                   : 'bg-[#2a1a0f] hover:bg-[#3d2616] border border-amber-500/30 text-amber-200'
               }`}
             >
-              <span>SELECT MATCH</span>
+              <span>REGISTER NOW</span>
               <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           )}
