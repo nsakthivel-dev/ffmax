@@ -74,13 +74,13 @@ export default function ContactSection() {
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                    className="btn-tactical w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-heading font-bold text-sm sm:text-base text-white hover:text-amber-300 transition-colors"
+                    className="btn-tactical w-full p-3.5 xs:p-4 sm:p-5 text-left flex items-center justify-between gap-3 sm:gap-4 font-heading font-bold text-xs xs:text-sm sm:text-base text-white hover:text-amber-300 transition-colors min-h-[48px]"
                   >
-                    <span className="flex items-center gap-3">
-                      <span className="font-mono text-xs text-amber-400/80 px-2 py-0.5 rounded bg-black/60 border border-amber-500/30">
+                    <span className="flex items-center gap-2.5 sm:gap-3">
+                      <span className="font-mono text-[10px] sm:text-xs text-amber-400/80 px-1.5 sm:px-2 py-0.5 rounded bg-black/60 border border-amber-500/30 shrink-0">
                         0{index + 1}
                       </span>
-                      <span>{faq.q}</span>
+                      <span className="leading-snug">{faq.q}</span>
                     </span>
                     <span className={`shrink-0 p-1.5 rounded-lg transition-transform duration-300 ${
                       isOpen ? 'bg-amber-400 text-black rotate-180' : 'bg-amber-950/70 border border-amber-500/30 text-amber-300'
@@ -90,7 +90,7 @@ export default function ContactSection() {
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 pt-2 text-xs sm:text-sm font-tech text-slate-300 leading-relaxed border-t border-amber-500/20 bg-black/40">
+                    <div className="px-4 xs:px-5 pb-4 xs:pb-5 pt-2 text-xs sm:text-sm font-tech text-slate-300 leading-relaxed border-t border-amber-500/20 bg-black/40">
                       {faq.a}
                     </div>
                   )}
@@ -102,10 +102,10 @@ export default function ContactSection() {
           {/* Right Column: Community & Support Links */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             
-            <div className="hud-card corner-bracket p-6 sm:p-7 rounded-2xl border-2 border-amber-500/40 shadow-2xl">
-              <h3 className="font-heading text-lg font-bold text-white mb-2 flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-amber-400" />
-                OFFICIAL COMMUNITY &amp; CHANNELS
+            <div className="hud-card corner-bracket p-4 xs:p-6 sm:p-7 rounded-xl sm:rounded-2xl border-2 border-amber-500/40 shadow-2xl">
+              <h3 className="font-heading text-base sm:text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+                <span>OFFICIAL COMMUNITY &amp; CHANNELS</span>
               </h3>
               <p className="text-xs text-slate-300 font-tech mb-5">
                 Join our channels for room IDs, brackets, schedules, and live broadcasts:

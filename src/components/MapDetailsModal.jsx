@@ -63,20 +63,20 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
           </button>
 
           {/* Badge & Coordinates */}
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
-            <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-amber-400/60 text-xs font-heading font-extrabold text-amber-400">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-1.5 sm:gap-2 max-w-[calc(100%-54px)] flex-wrap">
+            <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-amber-400/60 text-[10px] sm:text-xs font-heading font-extrabold text-amber-400 shrink-0">
               MAP {map.number}
             </span>
             {isComingSoon ? (
-              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-amber-500/20 text-amber-300 border border-amber-500/40">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold font-tech backdrop-blur-md bg-amber-500/20 text-amber-300 border border-amber-500/40 shrink-0">
                 STATUS: COMING SOON
               </span>
             ) : isAllFull ? (
-              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-rose-600/90 text-white">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold font-tech backdrop-blur-md bg-rose-600/90 text-white shrink-0">
                 STATUS: REGISTRATION FULL (96/96)
               </span>
             ) : (
-              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-emerald-600/90 text-white flex items-center gap-1.5">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold font-tech backdrop-blur-md bg-emerald-600/90 text-white flex items-center gap-1.5 shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 <span>OPEN • 96 SLOTS POOL</span>
               </span>
@@ -156,18 +156,18 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
                   </span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 text-center my-3 font-tech">
-                  <div className="p-2 rounded-xl bg-[#1c120a] border border-amber-500/20">
-                    <span className="text-[10px] text-slate-400 block uppercase">Capacity</span>
-                    <span className="text-base font-heading font-black text-white">96</span>
+                <div className="grid grid-cols-3 gap-1.5 xs:gap-2 text-center my-3 font-tech">
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Capacity</span>
+                    <span className="text-sm xs:text-base font-heading font-black text-white">96</span>
                   </div>
-                  <div className="p-2 rounded-xl bg-[#1c120a] border border-amber-500/20">
-                    <span className="text-[10px] text-slate-400 block uppercase">Registered</span>
-                    <span className="text-base font-heading font-black text-amber-400">{totalRegistered}</span>
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Registered</span>
+                    <span className="text-sm xs:text-base font-heading font-black text-amber-400">{totalRegistered}</span>
                   </div>
-                  <div className="p-2 rounded-xl bg-[#1c120a] border border-amber-500/20">
-                    <span className="text-[10px] text-slate-400 block uppercase">Available</span>
-                    <span className="text-base font-heading font-black text-emerald-400">{totalAvailable}</span>
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Available</span>
+                    <span className="text-sm xs:text-base font-heading font-black text-emerald-400">{totalAvailable}</span>
                   </div>
                 </div>
 

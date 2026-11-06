@@ -27,12 +27,12 @@ export default function TechnicalPartner() {
 
         {/* Featured Technical Partner Card with Cyber-Frame */}
         <div className="max-w-4xl mx-auto">
-          <div className="hud-card corner-bracket p-5 sm:p-10 rounded-3xl border-2 border-cyan-500/40 shadow-2xl relative overflow-hidden">
+          <div className="hud-card corner-bracket p-4 xs:p-6 sm:p-10 rounded-2xl sm:rounded-3xl border-2 border-cyan-500/40 shadow-2xl relative overflow-hidden">
             
             {/* Top Accent Gradient Border */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-cyan-500 via-teal-400 to-amber-500" />
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 items-center">
               
               {/* Left: Official RC Innovations Circular Logo Centered */}
               <div className="md:col-span-5 flex items-center justify-center">
@@ -42,7 +42,7 @@ export default function TechnicalPartner() {
                   <div className="absolute -inset-4 bg-gradient-to-tr from-cyan-500/35 via-teal-400/25 to-amber-500/30 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500" />
                   
                   {/* Circular Logo Emblem - Enlarged and Centered */}
-                  <div className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-52 sm:h-52 md:w-56 md:h-56 rounded-full p-1.5 bg-gradient-to-tr from-cyan-400 via-teal-300 to-amber-400 shadow-2xl shadow-cyan-500/40 group-hover:shadow-cyan-400/70 group-hover:scale-105 transition-all duration-300 flex items-center justify-center">
+                  <div className="relative w-32 h-32 xs:w-40 xs:h-40 sm:w-52 sm:h-52 md:w-56 md:h-56 rounded-full p-1.5 bg-gradient-to-tr from-cyan-400 via-teal-300 to-amber-400 shadow-2xl shadow-cyan-500/40 group-hover:shadow-cyan-400/70 group-hover:scale-105 transition-all duration-300 flex items-center justify-center">
                     <img 
                       src={TOURNAMENT_CONFIG.technicalPartner.logoUrl || "/assets/branding/rc.png"} 
                       alt="RC Innovations Official Logo" 

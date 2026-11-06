@@ -36,36 +36,36 @@ export default function YouTuberSection() {
 
         {/* Featured Host Card with Cyber-Esports Chassis */}
         <div className="max-w-4xl mx-auto">
-          <div className="hud-card corner-bracket p-5 sm:p-10 rounded-3xl border-2 border-red-500/40 shadow-2xl relative overflow-hidden">
+          <div className="hud-card corner-bracket p-4 xs:p-6 sm:p-10 rounded-2xl sm:rounded-3xl border-2 border-red-500/40 shadow-2xl relative overflow-hidden">
             
             {/* Top Accent Gradient Border */}
             <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-600 via-amber-500 to-[#5865F2]" />
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 items-center">
               
               {/* Left: Host Avatar Badge with Live Radar Halo */}
               <div className="md:col-span-5 flex justify-center">
                 <div className="relative group">
                   <div className="absolute -inset-2 bg-gradient-to-tr from-red-600 via-orange-600 to-[#5865F2] rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition duration-500" />
                   
-                  <div className="relative w-44 h-44 sm:w-60 sm:h-60 rounded-2xl bg-gradient-to-br from-red-950/90 via-[#180f0a] to-[#25160d] border-2 border-red-500/60 flex flex-col items-center justify-center p-4 sm:p-6 text-center shadow-2xl corner-bracket">
+                  <div className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-60 sm:h-60 rounded-xl sm:rounded-2xl bg-gradient-to-br from-red-950/90 via-[#180f0a] to-[#25160d] border-2 border-red-500/60 flex flex-col items-center justify-center p-3.5 sm:p-6 text-center shadow-2xl corner-bracket">
                     
                     {/* Pulsing Live Badge */}
-                    <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-red-600/90 text-white text-[9px] sm:text-[10px] font-tech font-bold uppercase shadow-md">
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-full bg-red-600/90 text-white text-[9px] sm:text-[10px] font-tech font-bold uppercase shadow-md">
                       <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                       <span>OFFICIAL HOST</span>
                     </div>
 
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-red-600/20 border-2 border-red-500/50 flex items-center justify-center text-red-500 mb-2 sm:mb-3 shadow-inner group-hover:scale-110 transition-transform">
-                      <Youtube className="w-9 h-9 sm:w-12 sm:h-12 stroke-[1.8]" />
+                    <div className="w-12 h-12 xs:w-16 xs:h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-red-600/20 border-2 border-red-500/50 flex items-center justify-center text-red-500 mb-1.5 sm:mb-3 shadow-inner group-hover:scale-110 transition-transform">
+                      <Youtube className="w-7 h-7 xs:w-9 xs:h-9 sm:w-12 sm:h-12 stroke-[1.8]" />
                     </div>
                     
-                    <div className="font-heading font-black text-lg sm:text-2xl text-white tracking-wider">
+                    <div className="font-heading font-black text-base xs:text-lg sm:text-2xl text-white tracking-wider">
                       {TOURNAMENT_CONFIG.host.name}
                     </div>
                     
-                    <div className="text-[11px] sm:text-xs font-tech text-amber-400 uppercase tracking-widest mt-0.5 sm:mt-1 font-bold flex items-center gap-1">
-                      <Flame className="w-3.5 h-3.5 text-orange-500" />
+                    <div className="text-[10px] sm:text-xs font-tech text-amber-400 uppercase tracking-widest mt-0.5 sm:mt-1 font-bold flex items-center gap-1">
+                      <Flame className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-orange-500" />
                       <span>CONTENT CREATOR</span>
                     </div>
                   </div>

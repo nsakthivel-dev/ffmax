@@ -231,8 +231,8 @@
    ========================================================================== */
 
 @media (max-width: 767px) {
-  html, body {
-    overflow-x: hidden;
+  html, body, #root {
+    overflow-x: hidden !important;
     width: 100%;
     -webkit-tap-highlight-color: transparent;
   }

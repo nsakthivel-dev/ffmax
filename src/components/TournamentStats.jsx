@@ -130,7 +130,7 @@ export default function TournamentStats({ onSelectMatch }) {
           
           {/* Left Column (5 Cols): Grand Championship Prize Vault */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="hud-card corner-bracket rounded-3xl p-5 sm:p-7 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-5">
+            <div className="hud-card corner-bracket rounded-2xl sm:rounded-3xl p-4 xs:p-5 sm:p-7 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-5">
               
               {/* Fiery Top Accent Ribbon */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400" />
@@ -141,21 +141,21 @@ export default function TournamentStats({ onSelectMatch }) {
               <div className="space-y-4">
                 {/* Header Badge */}
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-xs font-tech font-bold text-amber-300 uppercase tracking-widest">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-[10px] sm:text-xs font-tech font-bold text-amber-300 uppercase tracking-widest">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                     <span>PRIZE &amp; MATCH STRUCTURE</span>
                   </div>
-                  <span className="text-xs font-mono text-emerald-400 font-bold px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30">
+                  <span className="text-[10px] sm:text-xs font-mono text-emerald-400 font-bold px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30">
                     VERIFIED POOL
                   </span>
                 </div>
 
                 {/* Main Cash Pool Display */}
                 <div>
-                  <div className="text-[11px] font-tech uppercase tracking-widest text-slate-400 font-bold">
+                  <div className="text-[10px] sm:text-[11px] font-tech uppercase tracking-widest text-slate-400 font-bold">
                     TOTAL TOURNAMENT PRIZE POOL
                   </div>
-                  <div className="text-4xl sm:text-5xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 drop-shadow-[0_0_25px_rgba(245,158,11,0.5)] mt-0.5">
+                  <div className="text-3xl sm:text-5xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 drop-shadow-[0_0_25px_rgba(245,158,11,0.5)] mt-0.5">
                     ₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()}
                   </div>
                   <p className="text-xs font-tech text-slate-300 mt-1">
@@ -201,23 +201,23 @@ export default function TournamentStats({ onSelectMatch }) {
                 </div>
 
                 {/* Dual Match Allocation Preview */}
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div className="p-3 rounded-xl border bg-black/50 border-amber-500/30 hover:border-amber-400/50 transition-colors text-center">
-                    <div className="text-[10px] font-tech text-amber-400 font-bold uppercase">MATCH 1 • BERMUDA</div>
-                    <div className="text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
-                    <div className="text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
+                <div className="grid grid-cols-2 gap-2 xs:gap-2.5">
+                  <div className="p-2.5 xs:p-3 rounded-xl border bg-black/50 border-amber-500/30 hover:border-amber-400/50 transition-colors text-center">
+                    <div className="text-[9px] xs:text-[10px] font-tech text-amber-400 font-bold uppercase truncate">MATCH 1 • BERMUDA</div>
+                    <div className="text-base xs:text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[9px] xs:text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
                   </div>
-                  <div className="p-3 rounded-xl border bg-black/50 border-orange-500/30 hover:border-orange-400/50 transition-colors text-center">
-                    <div className="text-[10px] font-tech text-orange-400 font-bold uppercase">MATCH 2 • BERMUDA</div>
-                    <div className="text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
-                    <div className="text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
+                  <div className="p-2.5 xs:p-3 rounded-xl border bg-black/50 border-orange-500/30 hover:border-orange-400/50 transition-colors text-center">
+                    <div className="text-[9px] xs:text-[10px] font-tech text-orange-400 font-bold uppercase truncate">MATCH 2 • BERMUDA</div>
+                    <div className="text-base xs:text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[9px] xs:text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
                   </div>
                 </div>
               </div>
 
               {/* Action Link to Maps */}
-              <div className="pt-3 border-t border-amber-500/20 flex items-center justify-between gap-2">
-                <span className="text-xs font-tech text-slate-400">
+              <div className="pt-3 border-t border-amber-500/20 flex flex-col xs:flex-row items-center justify-between gap-2.5 text-center xs:text-left">
+                <span className="text-[11px] sm:text-xs font-tech text-slate-400">
                   Single 96-slot registration pool on Bermuda
                 </span>
                 <button
@@ -226,7 +226,7 @@ export default function TournamentStats({ onSelectMatch }) {
                     if (onSelectMatch) onSelectMatch();
                     else window.location.hash = 'select-match';
                   }}
-                  className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors shrink-0"
+                  className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors shrink-0 min-h-[38px]"
                 >
                   <span>REGISTER NOW</span>
                   <ChevronRight className="w-4 h-4 text-amber-400" />
