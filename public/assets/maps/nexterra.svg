@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="nex-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a051d"/>
+      <stop offset="50%" stop-color="#140a33"/>
+      <stop offset="100%" stop-color="#070214"/>
+    </linearGradient>
+    <radialGradient id="nex-antigrav" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#9333ea" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="nex-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#a855f7" stroke-width="0.8" stroke-opacity="0.2"/>
+      <circle cx="0" cy="0" r="1.5" fill="#c084fc" opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#nex-bg)"/>
+  <rect width="800" height="500" fill="url(#nex-grid)"/>
+
+  <!-- Futuristic High-tech Cyber City Outlines -->
+  <polygon points="100,320 220,180 340,320" fill="#1e1145" stroke="#a855f7" stroke-width="2" stroke-opacity="0.6"/>
+  <polygon points="460,340 580,160 700,340" fill="#170d38" stroke="#06b6d4" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Grav Labs (Zero-Gravity Zone Rings) -->
+  <g transform="translate(400, 240)">
+    <circle cx="0" cy="0" r="90" fill="url(#nex-antigrav)"/>
+    <ellipse cx="0" cy="0" rx="100" ry="40" fill="none" stroke="#a855f7" stroke-width="2.5" stroke-dasharray="12,6"/>
+    <ellipse cx="0" cy="0" rx="40" ry="100" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="10,5"/>
+    <circle cx="0" cy="0" r="24" fill="#7e22ce" stroke="#f43f5e" stroke-width="3"/>
+    <circle cx="0" cy="0" r="8" fill="#facc15"/>
+    <text x="0" y="-55" fill="#f0abfc" font-family="'Chakra Petch', sans-serif" font-size="14" font-weight="800" text-anchor="middle" letter-spacing="1">★ GRAV LABS (ZERO-G)</text>
+  </g>
+
+  <!-- Intellect City -->
+  <g transform="translate(180, 280)">
+    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+    <text x="0" y="36" fill="#7dd3fc" font-family="'Chakra Petch', sans-serif" font-size="11" font-weight="700" text-anchor="middle">INTELLECT CITY</text>
+  </g>
+
+  <!-- Museum -->
+  <g transform="translate(620, 260)">
+    <polygon points="0,-16 18,12 -18,12" fill="#311042" stroke="#e879f9" stroke-width="2"/>
+    <text x="0" y="28" fill="#f5d0fe" font-family="'Chakra Petch', sans-serif" font-size="11" font-weight="700" text-anchor="middle">MUSEUM</text>
+  </g>
+
+  <!-- Center Plaza -->
+  <g transform="translate(400, 390)">
+    <circle cx="0" cy="0" r="14" fill="#0f172a" stroke="#22c55e" stroke-width="2"/>
+    <text x="0" y="26" fill="#86efac" font-family="'Chakra Petch', sans-serif" font-size="11" font-weight="700" text-anchor="middle">PLAZA CENTER</text>
+  </g>
+
+  <!-- Tactical HUD -->
+  <rect x="20" y="20" width="145" height="34" rx="4" fill="#030712" fill-opacity="0.8" stroke="#a855f7" stroke-width="1"/>
+  <text x="30" y="42" fill="#c084fc" font-family="'Chakra Petch', monospace" font-size="13" font-weight="700">MAP 05 // NEX TERRA</text>
+  <text x="770" y="45" fill="#c084fc" font-family="'Chakra Petch', monospace" font-size="11" text-anchor="end" opacity="0.8">GRAVITY DYNAMICS: ACTIVE</text>
+  <text x="770" y="65" fill="#94a3b8" font-family="'Chakra Petch', monospace" font-size="10" text-anchor="end">TERRAIN: SCI-FI METROPOLIS</text>
+</svg>
+
