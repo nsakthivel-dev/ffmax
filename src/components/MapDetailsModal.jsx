@@ -251,7 +251,7 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
               }}
               className="btn-tactical flex-1 py-3 px-4 sm:px-6 rounded-xl font-heading font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 min-h-[44px]"
             >
-              <span>REGISTER NOW (96 SLOTS POOL)</span>
+              <span>REGISTER NOW</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           )}

@@ -12,7 +12,7 @@ export default function Navbar({ onOpenPoster, onSelectMatch }) {
       setScrolled(window.scrollY > 30);
 
       // Mobile active section detection
-      const sections = ['home', 'tournament', 'prize-pool', 'maps', 'rules', 'host', 'technical-partner', 'contact'];
+      const sections = ['home', 'tournament', 'maps', 'rules', 'host', 'technical-partner', 'contact'];
       const scrollPos = window.scrollY + 100;
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -20,7 +20,7 @@ export default function Navbar({ onOpenPoster, onSelectMatch }) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section === 'prize-pool' ? 'tournament' : section);
+            setActiveSection(section);
             break;
           }
         }
@@ -203,7 +203,7 @@ export default function Navbar({ onOpenPoster, onSelectMatch }) {
               }}
               className="btn-tactical clip-corner w-full min-h-[46px] py-3 text-center text-xs font-black text-black bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/30 font-heading tracking-wider uppercase flex items-center justify-center gap-1.5 active:scale-95 transition-all"
             >
-              <span>REGISTER NOW (BERMUDA SOLO)</span>
+              <span>REGISTER NOW</span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

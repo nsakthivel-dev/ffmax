@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TournamentStats from '../components/TournamentStats';
-import PrizePool from '../components/PrizePool';
 import PromotionPoster from '../components/PromotionPoster';
 import MapRegistration from '../components/MapRegistration';
 import TournamentRules from '../components/TournamentRules';
@@ -37,9 +36,6 @@ export default function Home({ onSelectMatch }) {
 
         {/* Tournament Metrics & Structure */}
         <TournamentStats onSelectMatch={onSelectMatch} />
-
-        {/* Dedicated Tournament Prize Pool Section */}
-        <PrizePool onSelectMatch={onSelectMatch} />
 
         {/* Official Promotional Poster Showcase */}
         <PromotionPoster onOpenPoster={handleOpenPoster} />

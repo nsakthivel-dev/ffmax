@@ -87,7 +87,7 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
                 }}
                 className="btn-tactical clip-corner w-full sm:w-auto px-6 py-3.5 text-sm sm:text-base font-black text-black bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/40 transition-all font-heading tracking-wider inline-flex items-center justify-center gap-2 group uppercase"
               >
-                <span>REGISTER NOW (96 SLOTS POOL)</span>
+                <span>REGISTER NOW</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
