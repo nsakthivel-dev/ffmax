@@ -7,39 +7,39 @@ export default function TournamentStats() {
     {
       id: 'maps',
       icon: Map,
-      value: `0${TOURNAMENT_CONFIG.stats.totalMaps}`,
-      label: 'BATTLEGROUNDS',
-      sublabel: '6 Classic & Sci-Fi Maps',
-      detail: 'Bermuda to Solara',
+      value: `01 / 0${TOURNAMENT_CONFIG.stats.totalMaps}`,
+      label: 'ACTIVE BATTLEGROUNDS',
+      sublabel: 'Bermuda Active • 5 Coming Soon',
+      detail: 'Current Map: Bermuda',
       color: 'from-amber-400 to-amber-600',
-      badge: 'OFFICIAL ROTATION'
+      badge: 'MAP ROTATION'
     },
     {
       id: 'total-players',
       icon: Users,
-      value: `${TOURNAMENT_CONFIG.stats.totalPlayers}`,
+      value: `${TOURNAMENT_CONFIG.stats.totalCapacity}`,
       label: 'TOTAL WARRIORS',
-      sublabel: '288 Elite Contenders',
-      detail: 'Strict Roster Limit',
+      sublabel: '96 Unique Contenders',
+      detail: 'Strict No-Repeat Policy',
       color: 'from-orange-400 to-orange-600',
       badge: 'ROSTER CAPACITY'
     },
     {
       id: 'per-map',
       icon: ShieldCheck,
-      value: `${TOURNAMENT_CONFIG.stats.playersPerMap}`,
-      label: 'PER BATTLEGROUND',
-      sublabel: '48 Solo Combatants',
-      detail: 'Standard BR Lobby',
+      value: `48 / 48`,
+      label: 'TWO SOLO MATCHES',
+      sublabel: 'Match 1: 48 • Match 2: 48',
+      detail: 'Separate 48-Player Lobbies',
       color: 'from-yellow-400 to-amber-600',
-      badge: 'MATCH CAPACITY'
+      badge: 'MATCH CAPACITIES'
     },
     {
       id: 'format',
       icon: Gamepad2,
       value: 'SOLO BR',
       label: 'COMBAT FORMAT',
-      sublabel: 'Battle Royale Mode',
+      sublabel: 'Solo Battle Royale Mode',
       detail: 'Custom Room Lobbies',
       color: 'from-amber-500 to-red-600',
       badge: 'COMPETITION MODE'
@@ -64,14 +64,15 @@ export default function TournamentStats() {
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-orange-500">STRUCTURE &amp; PRIZE VAULT</span>
           </h2>
           <p className="mt-2.5 sm:mt-3 text-xs sm:text-base text-slate-300 font-tech">
-            Engineered for pure competitive excellence. Transparent rules, fair slot allocation, and cash rewards for every map champion.
+            Engineered for pure competitive excellence. Two independent Solo Matches on Bermuda, 48 players each, with cash rewards for champions and zero player repeats.
           </p>
         </div>
 
         {/* Compact Mobile-Only Statistics Ribbon (< lg screens) */}
         {(() => {
-          const totalCapacity = TOURNAMENT_CONFIG.stats.playersPerMap * TOURNAMENT_CONFIG.stats.totalMaps;
-          const totalRegistered = TOURNAMENT_CONFIG.maps.reduce((acc, m) => acc + (m.defaultRegistered || 0), 0);
+          const totalCapacity = TOURNAMENT_CONFIG.stats.totalCapacity || 96;
+          const bermudaMap = TOURNAMENT_CONFIG.maps[0];
+          const totalRegistered = bermudaMap.defaultRegistered || 55;
           const totalRemaining = Math.max(0, totalCapacity - totalRegistered);
           const isFull = totalRemaining <= 0;
 
@@ -82,22 +83,22 @@ export default function TournamentStats() {
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-500/20 text-xs font-tech">
                   <span className="flex items-center gap-1.5 text-amber-300 font-bold uppercase tracking-wider">
                     <Target className="w-3.5 h-3.5 text-amber-400" />
-                    <span>LIVE ROSTER TELEMETRY</span>
+                    <span>BERMUDA DUAL MATCH TELEMETRY</span>
                   </span>
                   <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-tech ${
                     isFull ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
                   }`}>
                     <span className={`w-1.5 h-1.5 rounded-full ${isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-                    <span>{isFull ? 'ROSTER FULL' : 'STATUS: OPEN'}</span>
+                    <span>{isFull ? 'MATCHES FULL' : 'STATUS: OPEN'}</span>
                   </span>
                 </div>
 
                 {/* 4 Compact Mobile Stats Cells */}
                 <div className="grid grid-cols-2 xs:grid-cols-4 gap-2 sm:gap-3 text-center">
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
-                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">MAX PLAYERS</div>
+                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">PER MATCH</div>
                     <div className="text-xl sm:text-2xl font-display font-extrabold text-amber-400 mt-0.5">
-                      48 <span className="text-[11px] font-tech text-amber-300/80">/map</span>
+                      48 <span className="text-[11px] font-tech text-amber-300/80">players</span>
                     </div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
@@ -113,7 +114,7 @@ export default function TournamentStats() {
                     </div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
-                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">PRIZE / MAP</div>
+                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">PRIZE / MATCH</div>
                     <div className="text-xl sm:text-2xl font-display font-extrabold text-amber-300 mt-0.5">
                       ₹1,000
                     </div>
@@ -183,29 +184,38 @@ export default function TournamentStats() {
 
                 {/* 6 Map Allocation Micro-Grid */}
                 <div className="mt-5 grid grid-cols-3 gap-2">
-                  {TOURNAMENT_CONFIG.maps.map((map) => (
-                    <div
-                      key={map.id}
-                      className="p-2 rounded-xl bg-black/50 border border-amber-500/20 text-center"
-                    >
-                      <div className="text-[10px] font-tech text-amber-400 font-bold">MAP {map.number}</div>
-                      <div className="text-xs font-heading font-extrabold text-slate-200 truncate">{map.name}</div>
-                      <div className="text-[10px] text-emerald-400 font-tech font-bold">₹1,000</div>
-                    </div>
-                  ))}
+                  {TOURNAMENT_CONFIG.maps.map((map) => {
+                    const isBermuda = map.id === 'map-01';
+                    return (
+                      <div
+                        key={map.id}
+                        className={`p-2 rounded-xl border text-center transition-all ${
+                          isBermuda 
+                            ? 'bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30' 
+                            : 'bg-black/40 border-amber-500/15 opacity-75'
+                        }`}
+                      >
+                        <div className="text-[10px] font-tech text-amber-400 font-bold">MAP {map.number}</div>
+                        <div className="text-xs font-heading font-extrabold text-slate-200 truncate">{map.name}</div>
+                        <div className={`text-[10px] font-tech font-bold ${isBermuda ? 'text-emerald-400' : 'text-slate-400'}`}>
+                          {isBermuda ? 'ACTIVE (2 MATCHES)' : 'COMING SOON'}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Action Link to Maps */}
               <div className="mt-6 pt-4 border-t border-amber-500/20 flex items-center justify-between">
                 <span className="text-xs font-tech text-slate-400">
-                  Select your map to compete
+                  Select your match on Bermuda
                 </span>
                 <a
                   href="#maps"
                   className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors"
                 >
-                  <span>CHOOSE BATTLEFIELD</span>
+                  <span>SELECT MATCH</span>
                   <ChevronRight className="w-4 h-4 text-amber-400" />
                 </a>
               </div>
@@ -264,10 +274,10 @@ export default function TournamentStats() {
                 </div>
                 <div>
                   <div className="font-heading text-sm font-bold text-white tracking-wide">
-                    ONE PLAYER • ONE MAP REGISTRATION RULE
+                    ONE PLAYER • ONE MATCH REGISTRATION POLICY
                   </div>
                   <div className="text-xs text-slate-300 font-tech">
-                    Every competitor is permitted to enter exactly 1 map. Multiple map registrations with the same Free Fire UID are strictly disallowed.
+                    Every competitor is permitted to enter exactly 1 match. Duplicate registrations between Match 1 and Match 2 with the same Free Fire MAX UID are strictly prohibited.
                   </div>
                 </div>
               </div>

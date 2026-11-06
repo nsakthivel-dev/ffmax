@@ -66,8 +66,15 @@ export async function fetchLiveSlotStatus() {
 
     const data = await response.json();
 
-    // Map payload into keyed object { [mapId]: { registered, available, isFull, ... } }
+    // Map payload into keyed object { [key]: { registered, available, isFull, ... } }
     const slots = {};
+    if (Array.isArray(data.matches)) {
+      data.matches.forEach((item) => {
+        const key = item.id || item.matchNumber || item.name;
+        slots[key] = computeSlotMetrics(item.registered, item.max || 48);
+      });
+    }
+
     if (Array.isArray(data.maps)) {
       data.maps.forEach((item) => {
         const key = item.id || item.mapNumber || item.name;
@@ -81,6 +88,12 @@ export async function fetchLiveSlotStatus() {
           slots[key] = computeSlotMetrics(data[key], MAX_PLAYERS);
         }
       });
+    }
+
+    // If match-01 and match-02 exist but map-01 is not set, aggregate into map-01
+    if (slots['match-01'] && slots['match-02'] && !slots['map-01']) {
+      const totalReg = (slots['match-01'].registered || 0) + (slots['match-02'].registered || 0);
+      slots['map-01'] = computeSlotMetrics(totalReg, 96);
     }
 
     return {

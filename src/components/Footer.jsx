@@ -48,7 +48,7 @@ export default function Footer({ onOpenPoster }) {
             </div>
 
             <p className="text-xs sm:text-sm font-tech leading-relaxed text-slate-300 max-w-sm">
-              Enter the battle. Prove your skills. Claim victory. 6 maps, 288 players, and community esports action powered by Free Fire MAX competitors.
+              Enter the battle. Prove your skills. Claim victory. Bermuda Solo Arena, 2 independent matches, 96 unique players, and community esports action powered by Free Fire MAX competitors.
             </p>
 
             <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-2.5">

@@ -55,25 +55,25 @@ export default function Hero({ onOpenPoster }) {
             </div>
 
             <p className="mt-3 sm:mt-4 text-xs sm:text-base text-slate-300 font-tech tracking-wide max-w-2xl mx-auto lg:mx-0 leading-relaxed drop-shadow-sm">
-              The premier battle royale showdown. 6 independent battlegrounds, 48 warriors per map, 288 total competitors. 
-              Register for your favorite battlefield and compete for tournament supremacy.
+              The premier battle royale showdown. Two independent Solo matches on Bermuda, 48 players per match, exactly 96 total unique competitors. 
+              Register for Match 1 or Match 2 and compete for championship victory.
             </p>
 
-            {/* Asymmetrical High-Impact Telemetry HUD Cards (Displaying 48 Max Capacity) */}
+            {/* Asymmetrical High-Impact Telemetry HUD Cards (Displaying 48 Max Capacity & 2 Matches) */}
             <div className="mt-5 sm:mt-6 grid grid-cols-3 gap-2 sm:gap-4 max-w-lg mx-auto lg:mx-0">
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
                 <div className="text-xl sm:text-3xl font-extrabold font-heading text-amber-400">48</div>
-                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">MAX / MAP</div>
+                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">PER MATCH</div>
                 <div className="w-6 sm:w-8 h-0.5 bg-amber-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
-                <div className="text-xl sm:text-3xl font-extrabold font-heading text-orange-400">06</div>
-                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">BATTLE MAPS</div>
+                <div className="text-xl sm:text-3xl font-extrabold font-heading text-orange-400">02</div>
+                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">SOLO MATCHES</div>
                 <div className="w-6 sm:w-8 h-0.5 bg-orange-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
               <div className="hud-card corner-bracket p-2 sm:p-3 rounded-xl flex flex-col items-center justify-center text-center">
-                <div className="text-xl sm:text-3xl font-extrabold font-heading text-emerald-400">₹6,000</div>
-                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">TOTAL REWARDS</div>
+                <div className="text-xl sm:text-3xl font-extrabold font-heading text-emerald-400">96</div>
+                <div className="text-[9px] sm:text-xs font-tech text-slate-300 uppercase tracking-wider font-extrabold">TOTAL PLAYERS</div>
                 <div className="w-6 sm:w-8 h-0.5 bg-emerald-400/40 rounded-full mt-1 sm:mt-1.5" />
               </div>
             </div>
@@ -84,7 +84,7 @@ export default function Hero({ onOpenPoster }) {
                 href="#maps"
                 className="btn-tactical clip-corner w-full sm:w-auto px-6 py-3.5 text-sm sm:text-base font-black text-black bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/40 transition-all font-heading tracking-wider inline-flex items-center justify-center gap-2 group uppercase"
               >
-                <span>REGISTER NOW (6 MAPS)</span>
+                <span>REGISTER NOW (BERMUDA SOLO)</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
 

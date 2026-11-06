@@ -21,6 +21,7 @@ export default function TournamentRules() {
     'rotate-[0.8deg]',
     '-rotate-[1.5deg]',
     'rotate-[1.1deg]',
+    '-rotate-[1.2deg]',
   ];
 
   const times = [
@@ -32,6 +33,7 @@ export default function TournamentRules() {
     '01:22 AM',
     '01:27 AM',
     '01:31 AM',
+    '01:35 AM',
   ];
 
   return (
@@ -52,12 +54,12 @@ export default function TournamentRules() {
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200">RULES &amp; CODE OF CONDUCT</span>
           </h2>
           <p className="mt-2.5 sm:mt-3 text-xs sm:text-base text-slate-300 font-tech">
-            Strict adherence to tournament regulations is mandatory. Violations will lead to automatic rejection or disqualification without exception.
+            Two independent Solo matches on Bermuda (48 players each = 96 unique players total). Zero repeated players permitted. Strict adherence to regulations is mandatory.
           </p>
         </div>
 
-        {/* 8 Rules Pinned Sticky Notes on Tactical Bulletin Board */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {/* 9 Rules Pinned Sticky Notes on Tactical Bulletin Board (3x3 Matrix on Desktop) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {TOURNAMENT_CONFIG.rules.map((rule, idx) => {
             const rotClass = rotations[idx % rotations.length];
             const timeTag = times[idx % times.length];

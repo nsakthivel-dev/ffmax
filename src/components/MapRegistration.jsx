@@ -7,7 +7,15 @@ import {
   Info, 
   Clock, 
   MousePointer,
-  RotateCw
+  RotateCw,
+  Gamepad2,
+  Lock,
+  ShieldAlert,
+  Users,
+  CheckCircle2,
+  ExternalLink,
+  Flame,
+  Target
 } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 import { fetchLiveSlotStatus } from '../services/registrationService';
@@ -282,11 +290,15 @@ export default function MapRegistration() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-950/60 border border-amber-500/40 text-[11px] sm:text-xs font-tech text-amber-300 tracking-widest uppercase mb-2.5 sm:mb-3">
+            <Flame className="w-3.5 h-3.5 text-orange-500" />
+            <span>PLAYABLE BATTLEFIELD: BERMUDA SOLO</span>
+          </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-orange-500">MAP SELECTION</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-300 font-tech">
-            Drag, swipe, scroll with mouse wheel, or use arrows to rotate through all 6 Free Fire MAX battlegrounds.
+            Bermuda is currently <strong className="text-emerald-400">OPEN</strong> featuring two independent 48-player solo matches (96 total unique capacity). Other 5 maps are coming soon.
           </p>
         </div>
 
@@ -505,27 +517,317 @@ export default function MapRegistration() {
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-tech text-slate-400">
             {maps.map((map, index) => {
               const isActive = index === activeIndex;
+              const isComingSoon = map.status === 'COMING_SOON';
               return (
                 <button
                   key={map.id}
                   onClick={() => setActiveIndex(index)}
-                  className={`px-2.5 py-1 rounded-lg border transition-all ${
+                  className={`px-2.5 py-1 rounded-lg border transition-all flex items-center gap-1.5 ${
                     isActive
                       ? 'bg-amber-950/70 border-amber-400/60 text-amber-300 font-bold shadow-md shadow-amber-950/40'
-                      : 'bg-black/50 border-amber-500/20 text-slate-400 hover:text-white hover:border-amber-500/40'
+                      : isComingSoon
+                        ? 'bg-black/40 border-amber-500/15 text-slate-400 hover:text-slate-200'
+                        : 'bg-black/50 border-emerald-500/30 text-emerald-300 hover:text-white'
                   }`}
                 >
-                  {map.number}. {map.name}
+                  <span>{map.number}. {map.name}</span>
+                  {isComingSoon && <span className="text-[9px] text-amber-400/70">(SOON)</span>}
+                  {!isComingSoon && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
                 </button>
               );
             })}
           </div>
         </div>
 
+        {/* ======================================================== */}
+        {/* DUAL MATCH ARENA: TWO INDEPENDENT SOLO MATCHES (BERMUDA) */}
+        {/* ======================================================== */}
+        {(() => {
+          const bermudaMap = maps.find((m) => m.id === 'map-01' || m.name === 'BERMUDA') || maps[0];
+          const matches = bermudaMap.matches || [
+            {
+              id: "match-01",
+              number: 1,
+              name: "MATCH 1",
+              title: "MATCH 1 – BERMUDA SOLO",
+              mode: "SOLO",
+              map: "Bermuda",
+              max: 48,
+              defaultRegistered: 34,
+              googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform"
+            },
+            {
+              id: "match-02",
+              number: 2,
+              name: "MATCH 2",
+              title: "MATCH 2 – BERMUDA SOLO",
+              mode: "SOLO",
+              map: "Bermuda",
+              max: 48,
+              defaultRegistered: 21,
+              googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-02-PLACEHOLDER/viewform"
+            }
+          ];
+
+          const match1Slot = slotData?.['match-01'] || {
+            registered: matches[0]?.defaultRegistered ?? 34,
+            max: 48,
+            available: Math.max(0, 48 - (matches[0]?.defaultRegistered ?? 34)),
+            isFull: (matches[0]?.defaultRegistered ?? 34) >= 48,
+            percentage: Math.round(((matches[0]?.defaultRegistered ?? 34) / 48) * 100)
+          };
+
+          const match2Slot = slotData?.['match-02'] || {
+            registered: matches[1]?.defaultRegistered ?? 21,
+            max: 48,
+            available: Math.max(0, 48 - (matches[1]?.defaultRegistered ?? 21)),
+            isFull: (matches[1]?.defaultRegistered ?? 21) >= 48,
+            percentage: Math.round(((matches[1]?.defaultRegistered ?? 21) / 48) * 100)
+          };
+
+          const totalUniqueRegistered = match1Slot.registered + match2Slot.registered;
+          const totalTournamentCapacity = 96;
+          const totalRemaining = Math.max(0, totalTournamentCapacity - totalUniqueRegistered);
+
+          return (
+            <div className="mt-12 sm:mt-16 max-w-5xl mx-auto">
+              {/* Chassis Container */}
+              <div className="hud-card corner-bracket p-5 sm:p-8 rounded-3xl border-2 border-amber-500/50 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#160c07]/95 via-[#0e0804] to-[#120a05]">
+                
+                {/* Top Accent Gradient Border */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400" />
+
+                {/* Header Information */}
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-amber-500/25">
+                  <div>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-500/20 border border-amber-400/40 text-xs font-tech font-bold text-amber-300 uppercase tracking-widest mb-1.5">
+                      <Gamepad2 className="w-4 h-4 text-amber-400" />
+                      <span>OFFICIAL BATTLEGROUND REGISTRATION</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-4xl font-extrabold font-heading text-white tracking-wide">
+                      BERMUDA SOLO ARENA – <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-orange-400">TWO SEPARATE MATCHES</span>
+                    </h3>
+                    <p className="text-xs sm:text-sm font-tech text-slate-300 mt-1 max-w-2xl">
+                      Choose between Match 1 or Match 2. Each match has an independent 48-player capacity. Total tournament capacity: <strong className="text-amber-300">96 unique players</strong>.
+                    </p>
+                  </div>
+
+                  <div className="shrink-0 flex flex-col items-start md:items-end gap-1 bg-black/60 p-3.5 rounded-2xl border border-amber-500/30">
+                    <span className="text-[11px] font-tech text-slate-400 uppercase tracking-wider font-semibold">TOTAL ROSTER TELEMETRY</span>
+                    <div className="text-xl sm:text-2xl font-heading font-black text-white">
+                      <span className="text-emerald-400">{totalRemaining}</span> <span className="text-slate-400 text-sm font-normal">Slots Left</span>
+                    </div>
+                    <span className="text-[10px] font-tech text-amber-400">({totalUniqueRegistered} / 96 Players Registered)</span>
+                  </div>
+                </div>
+
+                {/* Two Separate Match Cards */}
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+                  
+                  {/* ========================================= */}
+                  {/* MATCH 1 – BERMUDA SOLO CARD */}
+                  {/* ========================================= */}
+                  <div className="hud-card p-5 sm:p-6 rounded-2xl border-2 border-amber-500/40 hover:border-amber-400 transition-all flex flex-col justify-between bg-black/50 shadow-xl group">
+                    <div>
+                      {/* Top Badges */}
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="px-3 py-1 rounded-xl bg-amber-500/25 border border-amber-400/60 text-xs font-heading font-black text-amber-300 tracking-wider">
+                          MATCH 1
+                        </span>
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-tech font-bold ${
+                          match1Slot.isFull 
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
+                            : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                        }`}>
+                          <span className={`w-2 h-2 rounded-full ${match1Slot.isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
+                          <span>{match1Slot.isFull ? 'STATUS: FULL' : 'STATUS: OPEN'}</span>
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl sm:text-2xl font-black font-heading text-white tracking-wide">
+                        MATCH 1 – BERMUDA SOLO
+                      </h4>
+                      <div className="flex items-center gap-2 text-xs font-tech text-slate-300 mt-1">
+                        <span className="text-amber-400 font-bold uppercase">Mode:</span> Solo BR
+                        <span>•</span>
+                        <span className="text-amber-400 font-bold uppercase">Map:</span> Bermuda
+                        <span>•</span>
+                        <span className="text-amber-400 font-bold uppercase">Lobby:</span> 48 Players
+                      </div>
+
+                      {/* Slot Telemetry Box */}
+                      <div className="mt-4 p-3.5 rounded-xl bg-[#140b07] border border-amber-500/25 space-y-2">
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Max Capacity:</span>
+                          <strong className="text-white font-heading">48 Players</strong>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Registered Players:</span>
+                          <strong className="text-orange-400 font-heading text-sm">
+                            {match1Slot.registered} / 48
+                          </strong>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Remaining Slots:</span>
+                          <strong className={match1Slot.isFull ? 'text-rose-400 font-heading text-sm' : 'text-emerald-400 font-heading text-sm'}>
+                            {match1Slot.available} SLOTS LEFT
+                          </strong>
+                        </div>
+
+                        {/* Animated Progress Bar */}
+                        <div className="w-full h-2.5 rounded-full bg-black/90 overflow-hidden border border-amber-500/30 pt-0">
+                          <div
+                            className={`h-full rounded-full transition-all duration-500 ${
+                              match1Slot.isFull 
+                                ? 'bg-rose-500' 
+                                : 'bg-gradient-to-r from-orange-600 via-amber-500 to-amber-300'
+                            }`}
+                            style={{ width: `${match1Slot.percentage}%` }}
+                          />
+                        </div>
+                        <div className="flex justify-between text-[10px] font-tech text-slate-400">
+                          <span>{match1Slot.percentage}% Slots Reserved</span>
+                          <span>Auto-locks at 48</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action Button */}
+                    <div className="mt-5">
+                      {match1Slot.isFull ? (
+                        <button
+                          disabled
+                          className="w-full py-3.5 px-4 rounded-xl text-xs font-heading font-black uppercase tracking-wider bg-rose-950/70 text-rose-300 border border-rose-500/40 cursor-not-allowed flex items-center justify-center gap-2 min-h-[46px]"
+                        >
+                          <Lock className="w-4 h-4" />
+                          <span>MATCH 1 REGISTRATION FULL</span>
+                        </button>
+                      ) : (
+                        <a
+                          href={matches[0]?.googleFormUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-tactical w-full py-3.5 px-4 rounded-xl text-xs sm:text-sm font-heading font-black uppercase tracking-wider bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 hover:from-amber-400 hover:to-orange-400 text-black shadow-xl shadow-amber-500/30 flex items-center justify-center gap-2 group min-h-[46px]"
+                        >
+                          <span>REGISTER FOR MATCH 1</span>
+                          <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ========================================= */}
+                  {/* MATCH 2 – BERMUDA SOLO CARD */}
+                  {/* ========================================= */}
+                  <div className="hud-card p-5 sm:p-6 rounded-2xl border-2 border-orange-500/40 hover:border-orange-400 transition-all flex flex-col justify-between bg-black/50 shadow-xl group">
+                    <div>
+                      {/* Top Badges */}
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="px-3 py-1 rounded-xl bg-orange-500/25 border border-orange-400/60 text-xs font-heading font-black text-orange-300 tracking-wider">
+                          MATCH 2
+                        </span>
+                        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-tech font-bold ${
+                          match2Slot.isFull 
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
+                            : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
+                        }`}>
+                          <span className={`w-2 h-2 rounded-full ${match2Slot.isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
+                          <span>{match2Slot.isFull ? 'STATUS: FULL' : 'STATUS: OPEN'}</span>
+                        </span>
+                      </div>
+
+                      <h4 className="text-xl sm:text-2xl font-black font-heading text-white tracking-wide">
+                        MATCH 2 – BERMUDA SOLO
+                      </h4>
+                      <div className="flex items-center gap-2 text-xs font-tech text-slate-300 mt-1">
+                        <span className="text-orange-400 font-bold uppercase">Mode:</span> Solo BR
+                        <span>•</span>
+                        <span className="text-orange-400 font-bold uppercase">Map:</span> Bermuda
+                        <span>•</span>
+                        <span className="text-orange-400 font-bold uppercase">Lobby:</span> 48 Players
+                      </div>
+
+                      {/* Slot Telemetry Box */}
+                      <div className="mt-4 p-3.5 rounded-xl bg-[#140b07] border border-orange-500/25 space-y-2">
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Max Capacity:</span>
+                          <strong className="text-white font-heading">48 Players</strong>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Registered Players:</span>
+                          <strong className="text-orange-400 font-heading text-sm">
+                            {match2Slot.registered} / 48
+                          </strong>
+                        </div>
+                        <div className="flex items-center justify-between text-xs font-tech">
+                          <span className="text-slate-400">Remaining Slots:</span>
+                          <strong className={match2Slot.isFull ? 'text-rose-400 font-heading text-sm' : 'text-emerald-400 font-heading text-sm'}>
+                            {match2Slot.available} SLOTS LEFT
+                          </strong>
+                        </div>
+
+                        {/* Animated Progress Bar */}
+                        <div className="w-full h-2.5 rounded-full bg-black/90 overflow-hidden border border-orange-500/30 pt-0">
+                          <div
+                            className={`h-full rounded-full transition-all duration-500 ${
+                              match2Slot.isFull 
+                                ? 'bg-rose-500' 
+                                : 'bg-gradient-to-r from-orange-600 via-amber-500 to-amber-300'
+                            }`}
+                            style={{ width: `${match2Slot.percentage}%` }}
+                          />
+                        </div>
+                        <div className="flex justify-between text-[10px] font-tech text-slate-400">
+                          <span>{match2Slot.percentage}% Slots Reserved</span>
+                          <span>Auto-locks at 48</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action Button */}
+                    <div className="mt-5">
+                      {match2Slot.isFull ? (
+                        <button
+                          disabled
+                          className="w-full py-3.5 px-4 rounded-xl text-xs font-heading font-black uppercase tracking-wider bg-rose-950/70 text-rose-300 border border-rose-500/40 cursor-not-allowed flex items-center justify-center gap-2 min-h-[46px]"
+                        >
+                          <Lock className="w-4 h-4" />
+                          <span>MATCH 2 REGISTRATION FULL</span>
+                        </button>
+                      ) : (
+                        <a
+                          href={matches[1]?.googleFormUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-tactical w-full py-3.5 px-4 rounded-xl text-xs sm:text-sm font-heading font-black uppercase tracking-wider bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 hover:from-orange-400 hover:to-amber-300 text-black shadow-xl shadow-orange-500/30 flex items-center justify-center gap-2 group min-h-[46px]"
+                        >
+                          <span>REGISTER FOR MATCH 2</span>
+                          <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Strict No Repeated Players Rule Alert */}
+                <div className="mt-6 p-4 rounded-2xl bg-amber-500/10 border-2 border-amber-500/40 flex items-start gap-3 backdrop-blur-md">
+                  <ShieldAlert className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                  <div className="text-xs font-tech text-slate-300 leading-relaxed">
+                    <strong className="text-amber-300 font-heading text-sm">STRICT COMPLIANCE NOTICE – NO REPEATED PLAYERS:</strong>{' '}
+                    Every competitor is permitted to enter <strong className="text-white">only ONE match</strong>. A player who registers for Match 1 cannot register for Match 2. Your Free Fire MAX UID serves as your unique verification credential. Duplicate submissions across Match 1 and Match 2 will be automatically blocked by the shared registration database. Total tournament capacity: <strong className="text-amber-300">96 unique players</strong>.
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          );
+        })()}
+
         {/* Rule Reminder */}
         <div className="mt-10 text-center">
           <p className="text-xs font-tech text-slate-400 max-w-xl mx-auto">
-            * 1 UID per player rule: Once 48 valid registrations are accepted for a map, it locks as FULL. Click any card to view detailed hotspots and register.
+            * 96 Unique Player Capacity: 48 players in Match 1 + 48 players in Match 2. Bermuda is currently the active battleground. Other five maps are coming soon.
           </p>
         </div>
 
@@ -534,7 +836,7 @@ export default function MapRegistration() {
       {/* Expanded Map Details Modal */}
       <MapDetailsModal
         map={selectedMap}
-        slotData={selectedMap ? slotData[selectedMap.id] : null}
+        slotData={selectedMap ? { ...(slotData[selectedMap.id] || {}), 'match-01': slotData['match-01'], 'match-02': slotData['match-02'] } : null}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />

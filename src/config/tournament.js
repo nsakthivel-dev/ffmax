@@ -29,14 +29,21 @@ export const TOURNAMENT_CONFIG = {
     downloadName: "FFM-FreeFireMAX-Tournament-Poster.jpeg"
   },
 
-  // Key Tournament Metrics
+  // Key Tournament Metrics - Two Separate Solo Matches
   stats: {
     totalMaps: 6,
-    playersPerMap: 48,
-    totalPlayers: 288,
-    winnerPrizePerMap: 1000, // in INR (₹)
-    totalPrizePool: 6000, // 6 maps x ₹1,000
+    availableMaps: 1, // Only Bermuda is active
+    totalMatches: 2,  // Two independent Solo Matches
+    match1Capacity: 48,
+    match2Capacity: 48,
+    playersPerMatch: 48,
+    totalCapacity: 96, // 48 unique players in Match 1 + 48 different unique players in Match 2
+    totalPlayers: 96,
+    winnerPrizePerMap: 1000, // ₹1,000 per match champion
+    winnerPrizePerMatch: 1000,
+    totalPrizePool: 6000, // Tournament series prize pool
     format: "Solo Battle Royale",
+    currentMap: "Bermuda",
     lobbyType: "Custom Room Lobby",
   },
 
@@ -74,7 +81,8 @@ export const TOURNAMENT_CONFIG = {
   },
 
   // Maps Configuration (6 Maps)
-  // Each map connects to its dedicated Google Form URL.
+  // Only BERMUDA is OPEN with Two Independent Solo Matches (48 Players each = 96 Total).
+  // The other 5 maps are COMING SOON.
   maps: [
     {
       id: "map-01",
@@ -85,9 +93,35 @@ export const TOURNAMENT_CONFIG = {
       description: "Free Fire's most iconic tropical island featuring balanced close-quarters town skirmishes, clock tower rushes, and high-stakes peak shootouts.",
       hotspots: ["Clock Tower", "Peak", "Bimasakti", "Factory"],
       image: "/assets/maps/bermuda.webp",
-      // Google Form URL for Map 01
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP01-BERMUDA-PLACEHOLDER/viewform",
-      defaultRegistered: 32,
+      status: "OPEN",
+      isPlayable: true,
+      max: 96, // 48 players in Match 1 + 48 players in Match 2
+      defaultRegistered: 55, // 34 in Match 1 + 21 in Match 2
+      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform",
+      matches: [
+        {
+          id: "match-01",
+          number: 1,
+          name: "MATCH 1",
+          title: "MATCH 1 – BERMUDA SOLO",
+          mode: "SOLO",
+          map: "Bermuda",
+          max: 48,
+          defaultRegistered: 34,
+          googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-01-PLACEHOLDER/viewform",
+        },
+        {
+          id: "match-02",
+          number: 2,
+          name: "MATCH 2",
+          title: "MATCH 2 – BERMUDA SOLO",
+          mode: "SOLO",
+          map: "Bermuda",
+          max: 48,
+          defaultRegistered: 21,
+          googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-BERMUDA-MATCH-02-PLACEHOLDER/viewform",
+        }
+      ]
     },
     {
       id: "map-02",
@@ -98,9 +132,11 @@ export const TOURNAMENT_CONFIG = {
       description: "A sprawling rural landscape divided by a massive river gorge. Precision bridge-crossing maneuvers and mountain rotations dictate late-game survival.",
       hotspots: ["Central", "Marble Pop", "Ski Lodge", "Moathouse"],
       image: "/assets/maps/purgatory.jpg",
-      // Google Form URL for Map 02
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP02-PURGATORY-PLACEHOLDER/viewform",
-      defaultRegistered: 28,
+      status: "COMING_SOON",
+      isPlayable: false,
+      max: 48,
+      defaultRegistered: 0,
+      googleFormUrl: null,
     },
     {
       id: "map-03",
@@ -111,9 +147,11 @@ export const TOURNAMENT_CONFIG = {
       description: "A rugged arid wasteland renowned for extreme verticality, elevated scaffolding structures, and natural canyon shootouts under the scorching desert sun.",
       hotspots: ["Refinery", "Command Post", "Santa Catarina", "Ruins"],
       image: "/assets/maps/kalahari.jpg",
-      // Google Form URL for Map 03
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP03-KALAHARI-PLACEHOLDER/viewform",
-      defaultRegistered: 41,
+      status: "COMING_SOON",
+      isPlayable: false,
+      max: 48,
+      defaultRegistered: 0,
+      googleFormUrl: null,
     },
     {
       id: "map-04",
@@ -124,9 +162,11 @@ export const TOURNAMENT_CONFIG = {
       description: "A scenic snow-kissed alpine valley with tight industrial settlements, snow-covered forestry, and tactical cliff ridges designed for adaptable combat.",
       hotspots: ["Snowfall", "Military Zinc", "Blue Ville", "Fusion"],
       image: "/assets/maps/alpine.jpg",
-      // Google Form URL for Map 04
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP04-ALPINE-PLACEHOLDER/viewform",
-      defaultRegistered: 48,
+      status: "COMING_SOON",
+      isPlayable: false,
+      max: 48,
+      defaultRegistered: 0,
+      googleFormUrl: null,
     },
     {
       id: "map-05",
@@ -137,9 +177,11 @@ export const TOURNAMENT_CONFIG = {
       description: "A futuristic sci-fi battleground featuring high-tech architectural sectors, dynamic moving platforms, and revolutionary zero-gravity combat zones.",
       hotspots: ["Grav Labs", "Intellect City", "Museum", "Plaza"],
       image: "/assets/maps/nexterra.jpg",
-      // Google Form URL for Map 05
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP05-NEXTERRA-PLACEHOLDER/viewform",
-      defaultRegistered: 19,
+      status: "COMING_SOON",
+      isPlayable: false,
+      max: 48,
+      defaultRegistered: 0,
+      googleFormUrl: null,
     },
     {
       id: "map-06",
@@ -150,53 +192,60 @@ export const TOURNAMENT_CONFIG = {
       description: "A modern coastal port metropolis equipped with a full-map high-speed magnetic slide track system for rapid rotations and high-mobility vertical duels.",
       hotspots: ["TV Tower", "Bloomtown", "Quantum City", "The Hub"],
       image: "/assets/maps/solara.jpg",
-      // Google Form URL for Map 06
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSc-MAP06-SOLARA-PLACEHOLDER/viewform",
-      defaultRegistered: 12,
+      status: "COMING_SOON",
+      isPlayable: false,
+      max: 48,
+      defaultRegistered: 0,
+      googleFormUrl: null,
     }
   ],
 
-  // Official Tournament Rules (No payment references)
+  // Official Tournament Rules - Two Separate Matches (48 Players each = 96 Unique Players)
   rules: [
     {
       id: 1,
-      title: "Map Slot Capacity",
-      desc: "Maximum 48 players per map. Once 48 valid registrations are accepted in Google Forms, the map automatically locks as FULL."
+      title: "Individual Solo Player Mode",
+      desc: "Both matches are individual Solo Player battle royale matches. Teaming, sharing accounts, or coordinated play is strictly forbidden."
     },
     {
       id: 2,
-      title: "Single Map Registration",
-      desc: "Each player is permitted to register for only ONE map. Cross-map duplicate submissions will invalidate all entries."
+      title: "Bermuda Sole Active Battlefield",
+      desc: "Bermuda is the only currently available and playable map. The other five maps are coming soon in future rotation stages."
     },
     {
       id: 3,
-      title: "No Duplicate Free Fire UIDs",
-      desc: "Duplicate Free Fire UID entries across one or multiple registration forms are strictly prohibited and result in immediate disqualification."
+      title: "48 Players Per Match Capacity",
+      desc: "Each match accommodates a strict maximum of 48 players. Match 1 and Match 2 each host an independent 48-player custom room lobby."
     },
     {
       id: 4,
-      title: "Accurate In-Game UID & Name",
-      desc: "Players must submit their exact Free Fire MAX UID and player tag in the Google Form to receive custom room invitations."
+      title: "Independent Registration Limits",
+      desc: "Match 1 and Match 2 have separate registration limits and live counts. Each match closes independently as soon as its 48 slots fill up."
     },
     {
       id: 5,
-      title: "Room ID & Password Delivery",
-      desc: "Custom match room credentials will be delivered exclusively to verified participants prior to match time via registered contact details."
+      title: "Single Match Entry Policy",
+      desc: "A player can participate in only ONE match. A player registered for Match 1 cannot register for Match 2 under any circumstance."
     },
     {
       id: 6,
-      title: "Match Timing & Punctuality",
-      desc: "Custom lobbies open 15 minutes before match start. Matches will begin promptly as scheduled; late arrivals cannot be accommodated."
+      title: "Duplicate Free Fire UID Prohibited",
+      desc: "Duplicate Free Fire MAX UID submissions across Match 1 and Match 2 are prohibited. Shared validation automatically rejects duplicate entries."
     },
     {
       id: 7,
-      title: "Zero-Tolerance Anti-Cheat",
-      desc: "Use of modified APKs, third-party scripts, aimbots, or unsportsmanlike teaming in solo lobbies results in instant ban and disqualification."
+      title: "Total 96 Unique Players Limit",
+      desc: "The tournament accommodates exactly 96 unique players total (48 in Match 1 + 48 different players in Match 2). No repeated UIDs allowed."
     },
     {
       id: 8,
-      title: "Organizer Decision Authority",
-      desc: "Tournament organizers reserve the final authority regarding rule enforcement, slot confirmations, and participant eligibility."
+      title: "Automatic Match Closure at 48",
+      desc: "Registration automatically closes for an individual match when its 48 valid unique slots are filled, locking the form."
+    },
+    {
+      id: 9,
+      title: "Remaining Maps Coming Soon",
+      desc: "Purgatory, Kalahari, Alpine, NeXTerra, and Solara are coming soon. Follow official host channels for upcoming map announcements."
     }
   ],
 

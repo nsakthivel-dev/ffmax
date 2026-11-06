@@ -126,8 +126,8 @@ export default function PromotionPoster({ onOpenPoster }) {
                     desc: "Classic survival competition with 48 players per map competing in individual skill matchups."
                   },
                   {
-                    title: "Strict 48 Players Per Map (288 Total)",
-                    desc: "Standard Free Fire MAX battle royale lobby size ensures authentic competitive gameplay."
+                    title: "Two Separate Matches on Bermuda (96 Unique Players)",
+                    desc: "Match 1 (48 players) & Match 2 (48 different players). Zero repeated players permitted across matches."
                   },
                   {
                     title: "Together For Gaming Community",

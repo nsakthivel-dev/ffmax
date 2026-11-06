@@ -197,7 +197,7 @@ export default function Navbar({ onOpenPoster }) {
               onClick={handleLinkClick}
               className="btn-tactical clip-corner w-full min-h-[46px] py-3 text-center text-xs font-black text-black bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/30 font-heading tracking-wider uppercase flex items-center justify-center gap-1.5 active:scale-95 transition-all"
             >
-              <span>REGISTER NOW (6 MAPS)</span>
+              <span>REGISTER NOW (BERMUDA SOLO)</span>
               <ChevronRight className="w-4 h-4" />
             </a>
           </div>
