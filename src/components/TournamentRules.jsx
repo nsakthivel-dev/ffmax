@@ -11,7 +11,7 @@ import {
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
 export default function TournamentRules() {
-  // Natural organic rotations for bulletin pinboard sticky notes
+  // Natural organic rotations for bulletin pinboard sticky notes (8 rules)
   const rotations = [
     '-rotate-[1.4deg]',
     'rotate-[1.2deg]',
@@ -21,7 +21,6 @@ export default function TournamentRules() {
     'rotate-[0.8deg]',
     '-rotate-[1.5deg]',
     'rotate-[1.1deg]',
-    '-rotate-[1.2deg]',
   ];
 
   const times = [
@@ -33,7 +32,6 @@ export default function TournamentRules() {
     '01:22 AM',
     '01:27 AM',
     '01:31 AM',
-    '01:35 AM',
   ];
 
   return (
@@ -48,18 +46,18 @@ export default function TournamentRules() {
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-amber-950/60 border border-amber-500/40 text-[11px] sm:text-xs font-tech text-amber-300 tracking-widest uppercase mb-2.5 sm:mb-3">
             <Shield className="w-3.5 h-3.5 text-amber-400" />
-            <span>COMBAT PROTOCOL &amp; COMPLIANCE MATRIX</span>
+            <span>COMBAT PROTOCOL &amp; OFFICIAL REGULATIONS</span>
           </div>
           <h2 className="text-2xl xs:text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200">RULES &amp; CODE OF CONDUCT</span>
+            RULES &amp; <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200">REGULATIONS</span>
           </h2>
           <p className="mt-2.5 sm:mt-3 text-xs sm:text-base text-slate-300 font-tech">
-            Two independent Solo matches on Bermuda (48 players each = 96 unique players total). Zero repeated players permitted. Strict adherence to regulations is mandatory.
+            Strict tournament regulations for the two solo matches on Bermuda (48 players each = 96 unique players total). Review all 8 official rules before entering the arena.
           </p>
         </div>
 
-        {/* 9 Rules Pinned Sticky Notes on Tactical Bulletin Board (3x3 Matrix on Desktop) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        {/* 8 Rules Pinned Sticky Notes on Tactical Bulletin Board (4x2 Matrix on Desktop) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {TOURNAMENT_CONFIG.rules.map((rule, idx) => {
             const rotClass = rotations[idx % rotations.length];
             const timeTag = times[idx % times.length];
@@ -119,7 +117,7 @@ export default function TournamentRules() {
                     {/* Handwritten Rule Content */}
                     <div className="mt-2 sm:mt-2.5">
                       <h3 className="font-['Kalam',cursive] text-base sm:text-lg font-bold text-[#1c1917] leading-tight tracking-tight mb-1">
-                        {rule.title}:
+                        {idx + 1}. {rule.title}
                       </h3>
                       <p className="font-['Kalam',cursive] text-[13px] xs:text-[14px] sm:text-base leading-snug text-[#292524] font-medium">
                         {rule.desc}

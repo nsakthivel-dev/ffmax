@@ -76,7 +76,7 @@ export default function PosterModal({ isOpen, onClose }) {
           </div>
           <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs">
             <span>Format: <strong className="text-white">{TOURNAMENT_CONFIG.stats.format}</strong></span>
-            <span>Winner: <strong className="text-emerald-400 font-heading">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMap.toLocaleString()}/map</strong></span>
+            <span>Winner: <strong className="text-emerald-400 font-heading">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()} / Match (₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()} Total)</strong></span>
           </div>
         </div>
       </div>

@@ -158,10 +158,10 @@ export default function TournamentStats() {
                   ₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()}
                 </div>
                 <p className="text-xs font-tech text-slate-300 mt-2">
-                  Guaranteed prize pool allocated across all 6 competitive battlegrounds.
+                  Guaranteed ₹2,000 prize pool allocated across two independent solo matches on Bermuda (₹1,000 per match winner).
                 </p>
 
-                {/* Per Map Reward Pill Box */}
+                {/* Per Match Reward Pill Box */}
                 <div className="mt-6 p-4 rounded-2xl bg-[#1f150c]/85 border border-amber-500/35 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
                     <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-slate-950 font-black shadow-lg">
@@ -169,40 +169,31 @@ export default function TournamentStats() {
                     </div>
                     <div>
                       <div className="text-xs font-tech text-slate-400 font-bold uppercase tracking-wider">
-                        WINNER PER MAP
+                        WINNER PER MATCH
                       </div>
                       <div className="text-2xl font-extrabold font-heading text-emerald-400">
-                        ₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMap.toLocaleString()}
+                        ₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()}
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-[11px] font-tech text-amber-300 block font-bold">6 CHAMPIONS</span>
-                    <span className="text-[10px] text-slate-400">1 Winner per lobby</span>
+                    <span className="text-[11px] font-tech text-amber-300 block font-bold">2 WINNERS TOTAL</span>
+                    <span className="text-[10px] text-slate-400">1 Champion per Match</span>
                   </div>
                 </div>
 
-                {/* 6 Map Allocation Micro-Grid */}
-                <div className="mt-5 grid grid-cols-3 gap-2">
-                  {TOURNAMENT_CONFIG.maps.map((map) => {
-                    const isBermuda = map.id === 'map-01';
-                    return (
-                      <div
-                        key={map.id}
-                        className={`p-2 rounded-xl border text-center transition-all ${
-                          isBermuda 
-                            ? 'bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30' 
-                            : 'bg-black/40 border-amber-500/15 opacity-75'
-                        }`}
-                      >
-                        <div className="text-[10px] font-tech text-amber-400 font-bold">MAP {map.number}</div>
-                        <div className="text-xs font-heading font-extrabold text-slate-200 truncate">{map.name}</div>
-                        <div className={`text-[10px] font-tech font-bold ${isBermuda ? 'text-emerald-400' : 'text-slate-400'}`}>
-                          {isBermuda ? 'ACTIVE (2 MATCHES)' : 'COMING SOON'}
-                        </div>
-                      </div>
-                    );
-                  })}
+                {/* Dual Match Allocation Micro-Grid */}
+                <div className="mt-5 grid grid-cols-2 gap-2.5">
+                  <div className="p-2.5 rounded-xl border bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30 text-center">
+                    <div className="text-[10px] font-tech text-amber-400 font-bold">MATCH 1 • BERMUDA</div>
+                    <div className="text-sm font-heading font-extrabold text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[10px] font-tech font-bold text-emerald-400">48 PLAYERS • SOLO</div>
+                  </div>
+                  <div className="p-2.5 rounded-xl border bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30 text-center">
+                    <div className="text-[10px] font-tech text-amber-400 font-bold">MATCH 2 • BERMUDA</div>
+                    <div className="text-sm font-heading font-extrabold text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[10px] font-tech font-bold text-emerald-400">48 PLAYERS • SOLO</div>
+                  </div>
                 </div>
               </div>
 

@@ -118,8 +118,8 @@ export default function PromotionPoster({ onOpenPoster }) {
                     desc: "Official collaboration between popular gaming creator FFM Mukesh and digital technology partner RC Innovations."
                   },
                   {
-                    title: "₹1,000 Winner Prize (Per Map)",
-                    desc: "The champion of each individual map receives a ₹1,000 cash prize, totaling ₹6,000 across all 6 maps."
+                    title: "₹1,000 Winner Prize Per Match (₹2,000 Total Pool)",
+                    desc: "Two separate solo matches on Bermuda, with one winner from each match receiving a ₹1,000 cash prize (₹2,000 total tournament prize pool)."
                   },
                   {
                     title: "Solo Battle Royale Mode",

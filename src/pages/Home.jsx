@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import TournamentStats from '../components/TournamentStats';
+import PrizePool from '../components/PrizePool';
 import PromotionPoster from '../components/PromotionPoster';
 import MapRegistration from '../components/MapRegistration';
 import TournamentRules from '../components/TournamentRules';
@@ -36,6 +37,9 @@ export default function Home() {
 
         {/* Tournament Metrics & Structure */}
         <TournamentStats />
+
+        {/* Dedicated Tournament Prize Pool Section */}
+        <PrizePool />
 
         {/* Official Promotional Poster Showcase */}
         <PromotionPoster onOpenPoster={handleOpenPoster} />

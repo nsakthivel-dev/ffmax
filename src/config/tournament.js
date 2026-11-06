@@ -39,9 +39,12 @@ export const TOURNAMENT_CONFIG = {
     playersPerMatch: 48,
     totalCapacity: 96, // 48 unique players in Match 1 + 48 different unique players in Match 2
     totalPlayers: 96,
-    winnerPrizePerMap: 1000, // ₹1,000 per match champion
-    winnerPrizePerMatch: 1000,
-    totalPrizePool: 6000, // Tournament series prize pool
+    match1Prize: 1000, // ₹1,000 for Match 1 Winner
+    match2Prize: 1000, // ₹1,000 for Match 2 Winner
+    winnerPrizePerMatch: 1000, // ₹1,000 per match champion
+    winnerPrizePerMap: 1000,
+    totalWinners: 2, // 1 winner per match = 2 winners total
+    totalPrizePool: 2000, // Total Tournament Prize Pool ₹2,000
     format: "Solo Battle Royale",
     currentMap: "Bermuda",
     lobbyType: "Custom Room Lobby",
@@ -200,52 +203,47 @@ export const TOURNAMENT_CONFIG = {
     }
   ],
 
-  // Official Tournament Rules - Two Separate Matches (48 Players each = 96 Unique Players)
+  // Official Tournament Rules - Exactly 8 Rules & Regulations
   rules: [
     {
       id: 1,
-      title: "Individual Solo Player Mode",
-      desc: "Both matches are individual Solo Player battle royale matches. Teaming, sharing accounts, or coordinated play is strictly forbidden."
+      title: "Solo Player Mode",
+      desc: "Only individual Solo Battle Royale gameplay is allowed. Teaming or cooperating with other players is strictly prohibited."
     },
     {
       id: 2,
-      title: "Bermuda Sole Active Battlefield",
-      desc: "Bermuda is the only currently available and playable map. The other five maps are coming soon in future rotation stages."
+      title: "Official Map",
+      desc: "Bermuda is the only currently available map. Other maps will be announced in future updates."
     },
     {
       id: 3,
-      title: "48 Players Per Match Capacity",
-      desc: "Each match accommodates a strict maximum of 48 players. Match 1 and Match 2 each host an independent 48-player custom room lobby."
+      title: "Match Structure",
+      desc: "Two separate matches will be conducted, with a maximum of 48 players in each match."
     },
     {
       id: 4,
-      title: "Independent Registration Limits",
-      desc: "Match 1 and Match 2 have separate registration limits and live counts. Each match closes independently as soon as its 48 slots fill up."
+      title: "Registration",
+      desc: "Each player can register for only one match. Duplicate Free Fire MAX UIDs across both matches are not allowed."
     },
     {
       id: 5,
-      title: "Single Match Entry Policy",
-      desc: "A player can participate in only ONE match. A player registered for Match 1 cannot register for Match 2 under any circumstance."
+      title: "Fair Play",
+      desc: "Hacks, cheats, scripts, modified clients, and unfair gameplay methods are strictly prohibited."
     },
     {
       id: 6,
-      title: "Duplicate Free Fire UID Prohibited",
-      desc: "Duplicate Free Fire MAX UID submissions across Match 1 and Match 2 are prohibited. Shared validation automatically rejects duplicate entries."
+      title: "Account Verification",
+      desc: "Players must use their own accounts and provide accurate registration details. Account sharing and impersonation are prohibited."
     },
     {
       id: 7,
-      title: "Total 96 Unique Players Limit",
-      desc: "The tournament accommodates exactly 96 unique players total (48 in Match 1 + 48 different players in Match 2). No repeated UIDs allowed."
+      title: "Match Participation",
+      desc: "Players must join the custom room on time and follow the official instructions regarding room ID and password."
     },
     {
       id: 8,
-      title: "Automatic Match Closure at 48",
-      desc: "Registration automatically closes for an individual match when its 48 valid unique slots are filled, locking the form."
-    },
-    {
-      id: 9,
-      title: "Remaining Maps Coming Soon",
-      desc: "Purgatory, Kalahari, Alpine, NeXTerra, and Solara are coming soon. Follow official host channels for upcoming map announcements."
+      title: "Disqualification",
+      desc: "Any violation of tournament rules may result in disqualification. The organizer's decision will be final."
     }
   ],
 

@@ -12,7 +12,7 @@ export default function Navbar({ onOpenPoster }) {
       setScrolled(window.scrollY > 30);
 
       // Mobile active section detection
-      const sections = ['home', 'tournament', 'maps', 'rules', 'host', 'technical-partner', 'contact'];
+      const sections = ['home', 'tournament', 'prize-pool', 'maps', 'rules', 'host', 'technical-partner', 'contact'];
       const scrollPos = window.scrollY + 100;
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -20,7 +20,7 @@ export default function Navbar({ onOpenPoster }) {
           const top = el.offsetTop;
           const height = el.offsetHeight;
           if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
+            setActiveSection(section === 'prize-pool' ? 'tournament' : section);
             break;
           }
         }

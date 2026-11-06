@@ -177,7 +177,7 @@ export default function Hero({ onOpenPoster }) {
                   <div className="h-4 w-px bg-amber-500/30" />
                   <div>
                     <span className="text-slate-400">Winner:</span>{' '}
-                    <span className="text-emerald-400 font-bold">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMap.toLocaleString()}/map</span>
+                    <span className="text-emerald-400 font-bold">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()}/match</span>
                   </div>
                   <div className="h-4 w-px bg-amber-500/30" />
                   <button
