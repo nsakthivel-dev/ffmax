@@ -130,7 +130,7 @@ export default function TournamentStats({ onSelectMatch }) {
           
           {/* Left Column (5 Cols): Grand Championship Prize Vault */}
           <div className="lg:col-span-5 flex flex-col">
-            <div className="hud-card corner-bracket rounded-3xl p-6 sm:p-8 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group">
+            <div className="hud-card corner-bracket rounded-3xl p-5 sm:p-7 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-5">
               
               {/* Fiery Top Accent Ribbon */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400" />
@@ -138,12 +138,12 @@ export default function TournamentStats({ onSelectMatch }) {
               {/* Background Ambient Glow */}
               <div className="absolute -top-16 -right-16 w-56 h-56 bg-amber-500/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700 pointer-events-none" />
 
-              <div>
-                {/* Vault Badge */}
-                <div className="flex items-center justify-between mb-6">
+              <div className="space-y-4">
+                {/* Header Badge */}
+                <div className="flex items-center justify-between">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-xs font-tech font-bold text-amber-300 uppercase tracking-widest">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                    <span>PRIZE POOL BREAKDOWN</span>
+                    <span>PRIZE &amp; MATCH STRUCTURE</span>
                   </div>
                   <span className="text-xs font-mono text-emerald-400 font-bold px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30">
                     VERIFIED POOL
@@ -151,54 +151,72 @@ export default function TournamentStats({ onSelectMatch }) {
                 </div>
 
                 {/* Main Cash Pool Display */}
-                <div className="text-xs font-tech uppercase tracking-widest text-slate-400 font-bold">
-                  TOTAL CHAMPIONSHIP PURSE
-                </div>
-                <div className="text-5xl sm:text-6xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)] mt-1">
-                  ₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()}
-                </div>
-                <p className="text-xs font-tech text-slate-300 mt-2">
-                  Guaranteed ₹2,000 prize pool allocated across two independent solo matches on Bermuda (₹1,000 per match winner).
-                </p>
-
-                {/* Per Match Reward Pill Box */}
-                <div className="mt-6 p-4 rounded-2xl bg-[#1f150c]/85 border border-amber-500/35 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-slate-950 font-black shadow-lg">
-                      <Award className="w-6 h-6 stroke-[2.2]" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-tech text-slate-400 font-bold uppercase tracking-wider">
-                        WINNER PER MATCH
-                      </div>
-                      <div className="text-2xl font-extrabold font-heading text-emerald-400">
-                        ₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()}
-                      </div>
-                    </div>
+                <div>
+                  <div className="text-[11px] font-tech uppercase tracking-widest text-slate-400 font-bold">
+                    TOTAL TOURNAMENT PRIZE POOL
                   </div>
-                  <div className="text-right">
-                    <span className="text-[11px] font-tech text-amber-300 block font-bold">2 WINNERS TOTAL</span>
-                    <span className="text-[10px] text-slate-400">1 Champion per Match</span>
+                  <div className="text-4xl sm:text-5xl font-display font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-200 to-orange-400 drop-shadow-[0_0_25px_rgba(245,158,11,0.5)] mt-0.5">
+                    ₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()}
                   </div>
+                  <p className="text-xs font-tech text-slate-300 mt-1">
+                    Distributed across two separate solo matches on Bermuda. Each match champion wins ₹1,000 cash.
+                  </p>
                 </div>
 
-                {/* Dual Match Allocation Micro-Grid */}
-                <div className="mt-5 grid grid-cols-2 gap-2.5">
-                  <div className="p-2.5 rounded-xl border bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30 text-center">
-                    <div className="text-[10px] font-tech text-amber-400 font-bold">MATCH 1 • BERMUDA</div>
-                    <div className="text-sm font-heading font-extrabold text-white mt-0.5">₹1,000 WINNER</div>
-                    <div className="text-[10px] font-tech font-bold text-emerald-400">48 PLAYERS • SOLO</div>
+                {/* How Tournament Works (Clear 3-Step Process) */}
+                <div className="p-3.5 rounded-2xl bg-[#1a110a]/90 border border-amber-500/30 space-y-2.5">
+                  <div className="text-[11px] font-tech text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-amber-400" />
+                    <span>HOW THIS TOURNAMENT WORKS</span>
                   </div>
-                  <div className="p-2.5 rounded-xl border bg-amber-950/60 border-amber-400/60 ring-1 ring-amber-400/30 text-center">
-                    <div className="text-[10px] font-tech text-amber-400 font-bold">MATCH 2 • BERMUDA</div>
-                    <div className="text-sm font-heading font-extrabold text-white mt-0.5">₹1,000 WINNER</div>
-                    <div className="text-[10px] font-tech font-bold text-emerald-400">48 PLAYERS • SOLO</div>
+
+                  <div className="space-y-2 text-xs font-tech">
+                    <div className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                        1
+                      </span>
+                      <p className="text-slate-300 leading-snug">
+                        <strong className="text-white">Common Registration:</strong> All 96 players register in one pool. No match selection needed.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                        2
+                      </span>
+                      <p className="text-slate-300 leading-snug">
+                        <strong className="text-white">Match Division:</strong> After 96 slots fill, the organizer divides players into 2 matches of 48.
+                      </p>
+                    </div>
+
+                    <div className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-400 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">
+                        3
+                      </span>
+                      <p className="text-slate-300 leading-snug">
+                        <strong className="text-emerald-400">Two Winners:</strong> Match 1 Winner gets ₹1,000 and Match 2 Winner gets ₹1,000.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Dual Match Allocation Preview */}
+                <div className="grid grid-cols-2 gap-2.5">
+                  <div className="p-3 rounded-xl border bg-black/50 border-amber-500/30 hover:border-amber-400/50 transition-colors text-center">
+                    <div className="text-[10px] font-tech text-amber-400 font-bold uppercase">MATCH 1 • BERMUDA</div>
+                    <div className="text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
+                  </div>
+                  <div className="p-3 rounded-xl border bg-black/50 border-orange-500/30 hover:border-orange-400/50 transition-colors text-center">
+                    <div className="text-[10px] font-tech text-orange-400 font-bold uppercase">MATCH 2 • BERMUDA</div>
+                    <div className="text-lg font-heading font-black text-white mt-0.5">₹1,000 WINNER</div>
+                    <div className="text-[10px] font-tech text-emerald-400 font-semibold">48 Players • 1 Winner</div>
                   </div>
                 </div>
               </div>
 
               {/* Action Link to Maps */}
-              <div className="mt-6 pt-4 border-t border-amber-500/20 flex items-center justify-between">
+              <div className="pt-3 border-t border-amber-500/20 flex items-center justify-between gap-2">
                 <span className="text-xs font-tech text-slate-400">
                   Single 96-slot registration pool on Bermuda
                 </span>
@@ -208,7 +226,7 @@ export default function TournamentStats({ onSelectMatch }) {
                     if (onSelectMatch) onSelectMatch();
                     else window.location.hash = 'select-match';
                   }}
-                  className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors"
+                  className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors shrink-0"
                 >
                   <span>REGISTER NOW</span>
                   <ChevronRight className="w-4 h-4 text-amber-400" />
