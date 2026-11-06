@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
-export default function PrizePool() {
+export default function PrizePool({ onSelectMatch }) {
   const { stats } = TOURNAMENT_CONFIG;
 
   // Four Mandatory Key Statistics
@@ -247,13 +247,17 @@ export default function PrizePool() {
                 <span className="text-xs font-tech text-slate-400 text-center sm:text-left">
                   Strict 48 player lobby limit.
                 </span>
-                <a
-                  href="#maps"
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onSelectMatch) onSelectMatch();
+                    else window.location.hash = 'select-match';
+                  }}
                   className="btn-tactical w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-heading font-black text-xs uppercase tracking-wider hover:from-amber-300 hover:to-orange-400 shadow-lg shadow-amber-500/20 transition-all"
                 >
                   <span>REGISTER FOR {m.title}</span>
                   <ChevronRight className="w-4 h-4" />
-                </a>
+                </button>
               </div>
             </div>
           ))}

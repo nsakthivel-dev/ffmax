@@ -2,7 +2,7 @@ import React from 'react';
 import { Trophy, Map, Users, Award, ShieldCheck, Gamepad2, Sparkles, ChevronRight, Zap, Target } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
-export default function TournamentStats() {
+export default function TournamentStats({ onSelectMatch }) {
   const statTiles = [
     {
       id: 'maps',
@@ -202,13 +202,17 @@ export default function TournamentStats() {
                 <span className="text-xs font-tech text-slate-400">
                   Select your match on Bermuda
                 </span>
-                <a
-                  href="#maps"
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (onSelectMatch) onSelectMatch();
+                    else window.location.hash = 'select-match';
+                  }}
                   className="btn-tactical inline-flex items-center gap-1.5 text-xs font-heading font-bold text-amber-300 hover:text-white transition-colors"
                 >
                   <span>SELECT MATCH</span>
                   <ChevronRight className="w-4 h-4 text-amber-400" />
-                </a>
+                </button>
               </div>
 
             </div>

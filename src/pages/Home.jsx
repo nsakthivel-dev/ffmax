@@ -13,7 +13,7 @@ import Footer from '../components/Footer';
 import PosterModal from '../components/PosterModal';
 import BulletFx from '../components/BulletFx';
 
-export default function Home() {
+export default function Home({ onSelectMatch }) {
   const [isPosterModalOpen, setIsPosterModalOpen] = useState(false);
 
   const handleOpenPoster = () => setIsPosterModalOpen(true);
@@ -28,24 +28,24 @@ export default function Home() {
       <div className="site-bg-wrapper" aria-hidden="true" />
 
       {/* Sticky Gaming Navigation Bar */}
-      <Navbar onOpenPoster={handleOpenPoster} />
+      <Navbar onOpenPoster={handleOpenPoster} onSelectMatch={onSelectMatch} />
 
       {/* Main Content Area */}
       <main className="flex-1 relative z-10">
         {/* Cinematic Hero Section */}
-        <Hero onOpenPoster={handleOpenPoster} />
+        <Hero onOpenPoster={handleOpenPoster} onSelectMatch={onSelectMatch} />
 
         {/* Tournament Metrics & Structure */}
-        <TournamentStats />
+        <TournamentStats onSelectMatch={onSelectMatch} />
 
         {/* Dedicated Tournament Prize Pool Section */}
-        <PrizePool />
+        <PrizePool onSelectMatch={onSelectMatch} />
 
         {/* Official Promotional Poster Showcase */}
         <PromotionPoster onOpenPoster={handleOpenPoster} />
 
         {/* 3-Card Infinite Circular Map Carousel */}
-        <MapRegistration />
+        <MapRegistration onSelectMatch={onSelectMatch} />
 
         {/* Official Tournament Rules */}
         <TournamentRules />

@@ -3,7 +3,7 @@ import { MapPin, Users, Trophy, Sparkles, ZoomIn, ChevronRight, Gamepad2, Flame,
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 import Countdown from './Countdown';
 
-export default function Hero({ onOpenPoster }) {
+export default function Hero({ onOpenPoster, onSelectMatch }) {
   return (
     <section id="home" className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Cinematic Golden Amber Radial Flares */}
@@ -80,13 +80,17 @@ export default function Hero({ onOpenPoster }) {
 
             {/* Tactical CTA Buttons (Responsive stacking for Mobile, row for Desktop) */}
             <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-2.5 sm:gap-4">
-              <a
-                href="#maps"
+              <button
+                type="button"
+                onClick={() => {
+                  if (onSelectMatch) onSelectMatch();
+                  else window.location.hash = 'select-match';
+                }}
                 className="btn-tactical clip-corner w-full sm:w-auto px-6 py-3.5 text-sm sm:text-base font-black text-black bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/40 transition-all font-heading tracking-wider inline-flex items-center justify-center gap-2 group uppercase"
               >
                 <span>REGISTER NOW (BERMUDA SOLO)</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
 
               <div className="grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-4">
                 <a

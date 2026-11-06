@@ -6,7 +6,8 @@ export default function MapCard({
   slotData, 
   position = 'center', // 'center' | 'left' | 'right' | 'hidden'
   onClick, 
-  onOpenDetails 
+  onOpenDetails,
+  onSelectMatch
 }) {
   const isCenter = position === 'center';
   const isComingSoon = map.status === 'COMING_SOON';
@@ -197,7 +198,11 @@ export default function MapCard({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                onOpenDetails(map);
+                if (onSelectMatch) {
+                  onSelectMatch();
+                } else {
+                  onOpenDetails(map);
+                }
               }}
               className={`w-full py-2.5 px-3 rounded-xl font-heading font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1 group shadow-md pointer-events-auto ${
                 isCenter 

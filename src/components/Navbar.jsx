@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Radio, Sparkles, Trophy, ChevronRight } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
-export default function Navbar({ onOpenPoster }) {
+export default function Navbar({ onOpenPoster, onSelectMatch }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -114,13 +114,16 @@ export default function Navbar({ onOpenPoster }) {
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>VIEW POSTER</span>
             </button>
-            <a
-              href="#maps"
+            <button
+              onClick={() => {
+                if (onSelectMatch) onSelectMatch();
+                else window.location.hash = 'select-match';
+              }}
               className="btn-tactical clip-corner px-5 py-2.5 text-xs font-black text-black bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-lg shadow-amber-500/35 hover:shadow-amber-400/50 transition-all font-heading tracking-wider uppercase flex items-center gap-1.5"
             >
               <span>REGISTER NOW</span>
               <ChevronRight className="w-3.5 h-3.5" />
-            </a>
+            </button>
           </div>
 
           {/* Mobile Action Controls (Quick Poster + Touch Hamburger) */}
@@ -192,14 +195,17 @@ export default function Navbar({ onOpenPoster }) {
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>VIEW TOURNAMENT POSTER</span>
             </button>
-            <a
-              href="#maps"
-              onClick={handleLinkClick}
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                if (onSelectMatch) onSelectMatch();
+                else window.location.hash = 'select-match';
+              }}
               className="btn-tactical clip-corner w-full min-h-[46px] py-3 text-center text-xs font-black text-black bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-xl shadow-amber-500/30 font-heading tracking-wider uppercase flex items-center justify-center gap-1.5 active:scale-95 transition-all"
             >
               <span>REGISTER NOW (BERMUDA SOLO)</span>
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       )}

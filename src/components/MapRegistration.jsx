@@ -22,7 +22,7 @@ import { fetchLiveSlotStatus } from '../services/registrationService';
 import MapCard from './MapCard';
 import MapDetailsModal from './MapDetailsModal';
 
-export default function MapRegistration() {
+export default function MapRegistration({ onSelectMatch }) {
   const maps = TOURNAMENT_CONFIG.maps; // 6 maps
   const totalMaps = maps.length;
 
@@ -483,9 +483,16 @@ export default function MapRegistration() {
 
                     if (isLeft) handlePrev();
                     else if (isRight) handleNext();
-                    else if (isCenter) handleOpenDetails(map);
+                    else if (isCenter) {
+                      if (map.isPlayable && onSelectMatch) {
+                        onSelectMatch();
+                      } else {
+                        handleOpenDetails(map);
+                      }
+                    }
                   }}
                   onOpenDetails={handleOpenDetails}
+                  onSelectMatch={onSelectMatch}
                 />
               </div>
             );
@@ -547,6 +554,7 @@ export default function MapRegistration() {
         slotData={selectedMap ? { ...(slotData[selectedMap.id] || {}), 'match-01': slotData['match-01'], 'match-02': slotData['match-02'] } : null}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        onSelectMatch={onSelectMatch}
       />
 
     </section>

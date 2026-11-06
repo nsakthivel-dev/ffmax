@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { X, ExternalLink, MapPin, Users, ShieldAlert, CheckCircle2, Lock, Sparkles, Navigation, Clock, Gamepad2, ChevronRight } from 'lucide-react';
 
-export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
+export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSelectMatch }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -78,14 +78,14 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
       onClick={onClose}
     >
       <div 
-        className="relative max-w-3xl w-full bg-[#120b07] rounded-t-3xl sm:rounded-3xl border-t sm:border border-amber-500/40 shadow-2xl shadow-black/90 overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[90vh]"
+        className="relative max-w-3xl w-full bg-[#120b07] rounded-t-3xl sm:rounded-3xl border-t sm:border border-amber-500/40 shadow-2xl shadow-black/90 overflow-hidden flex flex-col max-h-[88vh] sm:max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Swipe / Sheet Grab Handle */}
         <div className="w-12 h-1.5 rounded-full bg-amber-500/40 mx-auto my-2 block sm:hidden shrink-0" />
 
-        {/* Top Header with Image Preview */}
-        <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full overflow-hidden bg-black shrink-0">
+        {/* Top Header with Compact Image Preview */}
+        <div className="relative h-32 sm:h-44 w-full overflow-hidden bg-black shrink-0">
           <img
             src={map.image}
             alt={`Free Fire MAX Map ${map.number} - ${map.name}`}
@@ -96,7 +96,7 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 min-w-[44px] min-h-[44px] p-2.5 rounded-xl bg-black/80 hover:bg-black/95 text-slate-200 hover:text-white border border-amber-500/40 transition-all shadow-lg flex items-center justify-center"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 min-w-[40px] min-h-[40px] p-2 rounded-xl bg-black/80 hover:bg-black/95 text-slate-200 hover:text-white border border-amber-500/40 transition-all shadow-lg flex items-center justify-center"
             aria-label="Close details"
           >
             <X className="w-5 h-5" />
@@ -104,19 +104,19 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
 
           {/* Badge & Coordinates */}
           <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex items-center gap-2">
-            <span className="px-2.5 sm:px-3 py-1 rounded-lg bg-black/85 backdrop-blur-md border border-amber-400/60 text-xs font-heading font-extrabold text-amber-400">
+            <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg bg-black/85 backdrop-blur-md border border-amber-400/60 text-xs font-heading font-extrabold text-amber-400">
               MAP {map.number}
             </span>
             {isComingSoon ? (
-              <span className="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-amber-500/20 text-amber-300 border border-amber-500/40">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-amber-500/20 text-amber-300 border border-amber-500/40">
                 STATUS: COMING SOON
               </span>
             ) : isAllFull ? (
-              <span className="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-rose-600/90 text-white">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-rose-600/90 text-white">
                 STATUS: BOTH MATCHES FULL
               </span>
             ) : (
-              <span className="px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-emerald-600/90 text-white flex items-center gap-1.5">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-bold font-tech backdrop-blur-md bg-emerald-600/90 text-white flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 <span>OPEN • 2 SOLO MATCHES</span>
               </span>
@@ -124,18 +124,18 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
           </div>
 
           {/* Title Area */}
-          <div className="absolute bottom-2.5 sm:bottom-3 left-4 sm:left-5 right-4 sm:right-5">
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-white tracking-wider drop-shadow-md">
+          <div className="absolute bottom-2 sm:bottom-2.5 left-4 sm:left-5 right-4 sm:right-5">
+            <h2 className="text-xl sm:text-3xl font-extrabold font-heading text-white tracking-wider drop-shadow-md">
               {map.name}
             </h2>
-            <p className="text-xs sm:text-sm font-tech text-amber-200/90 font-semibold">
+            <p className="text-[11px] sm:text-xs font-tech text-amber-200/90 font-semibold truncate">
               {map.subtitle} • {map.terrain}
             </p>
           </div>
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="p-4 sm:p-7 overflow-y-auto space-y-5 sm:space-y-6 flex-1 overscroll-contain">
+        <div className="p-4 sm:p-6 overflow-y-auto space-y-4 sm:space-y-5 flex-1 min-h-0 overscroll-contain">
           
           {/* Map Tactical Description */}
           <div>
@@ -366,9 +366,16 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose }) {
               <span>BOTH MATCHES ARE FULL</span>
             </button>
           ) : (
-            <div className="flex-1 flex items-center justify-end gap-2 text-xs font-tech text-slate-400">
-              <span className="hidden xs:inline">Select Match 1 or Match 2 above to register</span>
-            </div>
+            <button
+              onClick={() => {
+                onClose();
+                if (onSelectMatch) onSelectMatch();
+              }}
+              className="btn-tactical flex-1 py-3 px-4 sm:px-6 rounded-xl font-heading font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-black shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 min-h-[44px]"
+            >
+              <span>SELECT MATCH (OPEN FULL PAGE)</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
           )}
         </div>
 
