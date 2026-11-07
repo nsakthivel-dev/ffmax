@@ -298,29 +298,25 @@ export default function MapRegistration({ onSelectMatch }) {
             TOURNAMENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-orange-500">MAP SELECTION</span>
           </h2>
           <p className="mt-3 text-sm sm:text-base text-slate-300 font-tech">
-            Bermuda is currently <strong className="text-emerald-400">OPEN</strong> featuring two independent 48-player solo matches (96 total unique capacity). Other 5 maps are coming soon.
+            Bermuda is currently <strong className="text-emerald-400">OPEN</strong> featuring two independent 48-player solo matches (96 total unique capacity). <strong className="text-amber-400">Slots are getting full</strong> — register now!
           </p>
         </div>
 
         {/* Live Slot Status Ribbon */}
         <div className="mb-8 p-4 rounded-2xl bg-[#140e09]/85 border border-amber-500/30 backdrop-blur-md flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-xl ${hasApi ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}`}>
-              {hasApi ? <Radio className="w-5 h-5 animate-pulse" /> : <Info className="w-5 h-5" />}
+            <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400">
+              <Flame className="w-5 h-5 text-orange-500 animate-pulse" />
             </div>
             <div>
               <div className="text-xs font-bold font-heading text-white tracking-wide flex items-center gap-2">
                 <span>SLOT AVAILABILITY STATUS</span>
-                {hasApi && (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-tech font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
-                    LIVE
-                  </span>
-                )}
+                <span className="px-2 py-0.5 rounded text-[10px] font-tech font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                  SLOTS GETTING FULL
+                </span>
               </div>
               <div className="text-xs font-tech text-slate-300">
-                {!hasApi 
-                  ? (fallbackMessage || "REGISTRATION AVAILABILITY WILL BE UPDATED SOON.")
-                  : (apiError ? `Notice: ${apiError}` : 'Live Synchronized Availability across all 6 maps')}
+                Single 96-player common pool on Bermuda. High demand — slots are filling fast.
               </div>
             </div>
           </div>

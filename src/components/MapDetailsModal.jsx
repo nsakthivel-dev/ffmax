@@ -76,9 +76,9 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
                 STATUS: REGISTRATION FULL (96/96)
               </span>
             ) : (
-              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold font-tech backdrop-blur-md bg-emerald-600/90 text-white flex items-center gap-1.5 shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span>OPEN • 96 SLOTS POOL</span>
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold font-tech backdrop-blur-md bg-amber-500/20 text-amber-300 border border-amber-500/40 flex items-center gap-1.5 shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                <span>OPEN • SLOTS GETTING FULL</span>
               </span>
             )}
           </div>
@@ -151,8 +151,9 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
                     <Gamepad2 className="w-3.5 h-3.5 text-amber-400" />
                     <span>COMMON REGISTRATION POOL (96 SLOTS TOTAL)</span>
                   </h3>
-                  <span className="text-xs font-tech text-emerald-400 font-bold font-mono">
-                    {totalAvailable} Slots Remaining
+                  <span className="text-xs font-tech text-amber-300 font-bold uppercase flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span>SLOTS GETTING FULL</span>
                   </span>
                 </div>
 
@@ -162,23 +163,24 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
                     <span className="text-sm xs:text-base font-heading font-black text-white">96</span>
                   </div>
                   <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
-                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Registered</span>
-                    <span className="text-sm xs:text-base font-heading font-black text-amber-400">{totalRegistered}</span>
+                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Status</span>
+                    <span className="text-xs xs:text-sm font-heading font-black text-amber-400 uppercase">GETTING FULL</span>
                   </div>
                   <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
-                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Available</span>
-                    <span className="text-sm xs:text-base font-heading font-black text-emerald-400">{totalAvailable}</span>
+                    <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Format</span>
+                    <span className="text-sm xs:text-base font-heading font-black text-emerald-400">SOLO BR</span>
                   </div>
                 </div>
 
                 {/* Progress Bar */}
                 <div className="w-full h-2 rounded-full bg-black/90 overflow-hidden border border-amber-500/30">
                   <div
-                    className={`h-full rounded-full transition-all duration-500 ${
-                      isAllFull ? 'bg-rose-500' : 'bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300'
-                    }`}
-                    style={{ width: `${progressPercentage}%` }}
+                    className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300 w-[85%]"
                   />
+                </div>
+                <div className="flex items-center justify-between text-[10px] font-tech text-slate-400 mt-1.5">
+                  <span className="text-amber-300 font-semibold">High Demand • Slots Filling Fast</span>
+                  <span>Auto-locks at 96</span>
                 </div>
               </div>
 

@@ -135,23 +135,23 @@ export default function MapCard({
             <div>
               <div className="flex items-center justify-between text-xs font-tech mb-1.5">
                 <span className="text-slate-400">Total Capacity:</span>
-                <span className="font-semibold">
-                  <strong className={isFull ? 'text-rose-400 font-heading text-sm' : 'text-emerald-400 font-heading text-sm'}>
-                    {available}
-                  </strong>{' '}
-                  <span className="text-slate-400">({registered}/96)</span>
+                <span className="font-semibold text-white font-heading text-xs uppercase tracking-wider">
+                  96 Players (2 Matches)
                 </span>
+              </div>
+
+              <div className="flex items-center justify-between text-[11px] font-tech text-amber-400 font-bold mb-1.5">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <span>SLOTS GETTING FULL</span>
+                </span>
+                <span className="text-slate-400 text-[10px]">Filling Fast</span>
               </div>
 
               {/* Mini Progress Bar */}
               <div className="w-full h-1.5 rounded-full bg-black/80 overflow-hidden border border-amber-500/30">
                 <div
-                  className={`h-full rounded-full transition-all duration-500 ${
-                    isFull
-                      ? 'bg-rose-500'
-                      : 'bg-gradient-to-r from-orange-600 via-amber-500 to-emerald-400'
-                  }`}
-                  style={{ width: `${percentage}%` }}
+                  className="h-full rounded-full transition-all duration-500 bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300 w-[85%]"
                 />
               </div>
             </div>

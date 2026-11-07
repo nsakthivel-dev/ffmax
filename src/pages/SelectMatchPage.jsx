@@ -97,9 +97,9 @@ export default function SelectMatchPage({ onBack }) {
 
           {/* Telemetry Capsule */}
           <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-tech">
-            <span className="text-slate-400 hidden xs:inline">REMAINING SLOTS:</span>
-            <span className="px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-bold font-mono text-[11px] sm:text-xs shrink-0">
-              {totalAvailable} / 96 LEFT
+            <span className="px-2.5 py-1 rounded-lg bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold font-tech uppercase text-[11px] sm:text-xs shrink-0 flex items-center gap-1.5 animate-pulse">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+              <span>SLOTS GETTING FULL</span>
             </span>
           </div>
 
@@ -143,12 +143,12 @@ export default function SelectMatchPage({ onBack }) {
 
             {/* Total Roster Telemetry Box */}
             <div className="p-3.5 xs:p-4 sm:p-5 rounded-2xl bg-black/70 border border-amber-500/40 text-center w-full lg:w-48 shrink-0 font-tech shadow-xl">
-              <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">TOTAL ROSTER TELEMETRY</span>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-heading font-black text-emerald-400 mt-0.5 sm:mt-1">
-                {totalAvailable} <span className="text-xs sm:text-sm font-tech text-slate-300">Slots Left</span>
+              <span className="text-slate-400 block text-[10px] uppercase font-bold tracking-wider">REGISTRATION STATUS</span>
+              <div className="text-xl xs:text-2xl sm:text-3xl font-heading font-black text-amber-400 mt-0.5 sm:mt-1 uppercase">
+                SLOTS GETTING FULL
               </div>
-              <span className="text-[11px] sm:text-xs text-amber-300/90 block mt-0.5 sm:mt-1 font-mono">
-                ({totalRegistered} / 96 Registered)
+              <span className="text-[11px] sm:text-xs text-emerald-400/90 block mt-0.5 sm:mt-1 font-tech font-bold uppercase tracking-wider">
+                96 Capacity • Filling Fast
               </span>
             </div>
           </div>
@@ -168,13 +168,9 @@ export default function SelectMatchPage({ onBack }) {
               <span>OFFICIAL REGISTRATION • BERMUDA SOLO</span>
             </div>
 
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-tech font-bold ${
-              isFull 
-                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' 
-                : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-lg shadow-emerald-950/40'
-            }`}>
-              <span className={`w-2 h-2 rounded-full ${isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-              <span>{isFull ? 'REGISTRATION CLOSED (FULL)' : 'STATUS: OPEN'}</span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-tech font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-lg shadow-amber-950/40">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span>STATUS: SLOTS GETTING FULL</span>
             </span>
           </div>
 
@@ -186,7 +182,7 @@ export default function SelectMatchPage({ onBack }) {
             SOLO BATTLE ROYALE • MAP: BERMUDA • ONE UNIFIED ENTRY FOR ALL 96 PLAYERS
           </p>
 
-          {/* Key Registration Statistics (3 Primary Metrics) */}
+          {/* Key Registration Statistics (3 Primary Metrics without specific counts) */}
           <div className="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-4">
             
             {/* Metric 1: Total Player Capacity */}
@@ -202,57 +198,53 @@ export default function SelectMatchPage({ onBack }) {
               </span>
             </div>
 
-            {/* Metric 2: Registered Players */}
+            {/* Metric 2: Registration Status */}
             <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
               <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
-                REGISTERED
+                REGISTRATION STATUS
               </span>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-heading font-black text-amber-400 mt-1 sm:mt-2">
-                {totalRegistered} <span className="text-base sm:text-xl font-tech text-slate-400 font-bold">/ 96</span>
+              <div className="text-xl xs:text-2xl sm:text-3xl font-heading font-black text-amber-400 mt-1 sm:mt-2 uppercase">
+                GETTING FULL
               </div>
-              <span className="text-[10px] sm:text-[11px] font-tech text-amber-300/80 mt-0.5 sm:mt-1">
-                {progressPercentage}% Filled
+              <span className="text-[10px] sm:text-[11px] font-tech text-amber-300/80 mt-0.5 sm:mt-1 font-semibold">
+                Slots Filling Fast
               </span>
             </div>
 
-            {/* Metric 3: Available Slots */}
+            {/* Metric 3: Match Allocation */}
             <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
               <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
-                AVAILABLE SLOTS
+                MATCH FORMAT
               </span>
               <div className="text-2xl xs:text-3xl sm:text-4xl font-heading font-black text-emerald-400 mt-1 sm:mt-2">
-                {totalAvailable}
+                SOLO BR
               </div>
               <span className="text-[10px] sm:text-[11px] font-tech text-emerald-300/80 mt-0.5 sm:mt-1">
-                {totalAvailable} Remaining
+                2 Matches (48 Each)
               </span>
             </div>
 
           </div>
 
-          {/* Registration Progress Bar (Based on 96 total slots) */}
+          {/* Registration Progress Bar (Focus on Slots Getting Full) */}
           <div className="mt-6 sm:mt-8 p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/70 border border-amber-500/30">
             <div className="flex items-center justify-between text-xs font-tech mb-2">
-              <span className="text-slate-300 font-semibold uppercase text-[11px] sm:text-xs">Capacity Progress</span>
-              <span className="font-heading font-bold text-amber-300 text-[11px] sm:text-xs">
-                {totalRegistered} / 96 ({progressPercentage}%)
+              <span className="text-slate-300 font-semibold uppercase text-[11px] sm:text-xs">Registration Demand</span>
+              <span className="font-heading font-bold text-amber-300 text-[11px] sm:text-xs uppercase flex items-center gap-1.5">
+                <Flame className="w-3.5 h-3.5 text-orange-400 animate-pulse" />
+                <span>SLOTS GETTING FULL</span>
               </span>
             </div>
             
             <div className="w-full h-3 sm:h-3.5 bg-black/90 rounded-full overflow-hidden border border-amber-500/40 p-0.5">
               <div 
-                className={`h-full rounded-full transition-all duration-700 ${
-                  isFull 
-                    ? 'bg-rose-500' 
-                    : 'bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300 shadow-[0_0_15px_rgba(245,158,11,0.6)]'
-                }`}
-                style={{ width: `${progressPercentage}%` }}
+                className="h-full rounded-full transition-all duration-700 bg-gradient-to-r from-orange-600 via-amber-400 to-yellow-300 shadow-[0_0_15px_rgba(245,158,11,0.6)] w-[85%]"
               />
             </div>
 
             <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-tech text-slate-400 mt-2">
-              <span>{isFull ? 'All 96 slots reserved' : `${totalAvailable} slots remaining`}</span>
-              <span className="text-amber-400/80">Auto-locks at 96</span>
+              <span className="text-amber-300 font-semibold">High Demand • Register Fast</span>
+              <span className="text-amber-400/80">Auto-locks at 96 submissions</span>
             </div>
           </div>
 

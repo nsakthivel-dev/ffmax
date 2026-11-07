@@ -71,10 +71,6 @@ export default function TournamentStats({ onSelectMatch }) {
         {/* Compact Mobile-Only Statistics Ribbon (< lg screens) */}
         {(() => {
           const totalCapacity = TOURNAMENT_CONFIG.stats.totalCapacity || 96;
-          const bermudaMap = TOURNAMENT_CONFIG.maps[0];
-          const totalRegistered = bermudaMap.defaultRegistered || 55;
-          const totalRemaining = Math.max(0, totalCapacity - totalRegistered);
-          const isFull = totalRemaining <= 0;
 
           return (
             <div className="block lg:hidden mb-8">
@@ -85,16 +81,20 @@ export default function TournamentStats({ onSelectMatch }) {
                     <Target className="w-3.5 h-3.5 text-amber-400" />
                     <span>BERMUDA REGISTRATION TELEMETRY</span>
                   </span>
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-tech ${
-                    isFull ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40'
-                  }`}>
-                    <span className={`w-1.5 h-1.5 rounded-full ${isFull ? 'bg-rose-400' : 'bg-emerald-400 animate-pulse'}`} />
-                    <span>{isFull ? 'REGISTRATION FULL' : 'STATUS: OPEN'}</span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold font-tech bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                    <span>STATUS: SLOTS GETTING FULL</span>
                   </span>
                 </div>
 
                 {/* 4 Compact Mobile Stats Cells */}
                 <div className="grid grid-cols-2 xs:grid-cols-4 gap-2 sm:gap-3 text-center">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
+                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">CAPACITY</div>
+                    <div className="text-xl sm:text-2xl font-display font-extrabold text-white mt-0.5">
+                      {totalCapacity} <span className="text-[11px] font-tech text-slate-400">players</span>
+                    </div>
+                  </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
                     <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">PER MATCH</div>
                     <div className="text-xl sm:text-2xl font-display font-extrabold text-amber-400 mt-0.5">
@@ -102,20 +102,14 @@ export default function TournamentStats({ onSelectMatch }) {
                     </div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
-                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">REGISTERED</div>
-                    <div className="text-xl sm:text-2xl font-display font-extrabold text-orange-400 mt-0.5">
-                      {totalRegistered} <span className="text-[11px] font-tech text-slate-400">/{totalCapacity}</span>
-                    </div>
-                  </div>
-                  <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
-                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">REMAINING SLOTS</div>
-                    <div className="text-xl sm:text-2xl font-display font-extrabold text-emerald-400 mt-0.5">
-                      {totalRemaining} <span className="text-[11px] font-tech text-slate-400">left</span>
+                    <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">STATUS</div>
+                    <div className="text-sm sm:text-base font-heading font-black text-amber-400 mt-1 uppercase truncate">
+                      GETTING FULL
                     </div>
                   </div>
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
                     <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">PRIZE / MATCH</div>
-                    <div className="text-xl sm:text-2xl font-display font-extrabold text-amber-300 mt-0.5">
+                    <div className="text-xl sm:text-2xl font-display font-extrabold text-emerald-400 mt-0.5">
                       ₹1,000
                     </div>
                   </div>
