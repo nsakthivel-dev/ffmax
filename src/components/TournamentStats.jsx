@@ -87,8 +87,8 @@ export default function TournamentStats({ onSelectMatch }) {
                   </span>
                 </div>
 
-                {/* 4 Compact Mobile Stats Cells */}
-                <div className="grid grid-cols-2 xs:grid-cols-4 gap-2 sm:gap-3 text-center">
+                {/* 4 Compact Mobile Stats Cells (2x2 on mobile, 4 columns on sm+) */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center">
                   <div className="p-2 sm:p-2.5 rounded-xl bg-black/50 border border-amber-500/20">
                     <div className="text-[10px] font-tech text-slate-400 uppercase tracking-wider">CAPACITY</div>
                     <div className="text-xl sm:text-2xl font-display font-extrabold text-white mt-0.5">

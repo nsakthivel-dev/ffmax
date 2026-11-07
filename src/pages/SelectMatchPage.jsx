@@ -182,44 +182,60 @@ export default function SelectMatchPage({ onBack }) {
             SOLO BATTLE ROYALE • MAP: BERMUDA • ONE UNIFIED ENTRY FOR ALL 96 PLAYERS
           </p>
 
-          {/* Key Registration Statistics (3 Primary Metrics without specific counts) */}
-          <div className="mt-6 sm:mt-8 grid grid-cols-1 xs:grid-cols-3 gap-2.5 sm:gap-4">
+          {/* Key Registration Statistics (Responsive: horizontal telemetry rows on mobile, 3 columns on sm+) */}
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-4">
             
             {/* Metric 1: Total Player Capacity */}
-            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
-              <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
-                TOTAL CAPACITY
-              </span>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-heading font-black text-white mt-1 sm:mt-2">
+            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 flex sm:flex-col items-center sm:items-center justify-between sm:justify-between text-left sm:text-center min-w-0">
+              <div className="min-w-0 pr-2 sm:pr-0">
+                <span className="text-[11px] sm:text-xs font-tech text-slate-400 uppercase font-bold tracking-wider block">
+                  TOTAL CAPACITY
+                </span>
+                <span className="text-[11px] font-tech text-slate-400 block sm:hidden mt-0.5">
+                  Maximum Limit
+                </span>
+              </div>
+              <div className="text-2xl sm:text-4xl font-heading font-black text-white sm:mt-1 sm:mb-1 shrink-0">
                 96
               </div>
-              <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 mt-0.5 sm:mt-1">
+              <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 hidden sm:block">
                 Maximum Limit
               </span>
             </div>
 
             {/* Metric 2: Registration Status */}
-            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
-              <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
-                REGISTRATION STATUS
-              </span>
-              <div className="text-xl xs:text-2xl sm:text-3xl font-heading font-black text-amber-400 mt-1 sm:mt-2 uppercase">
-                GETTING FULL
+            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 flex sm:flex-col items-center sm:items-center justify-between sm:justify-between text-left sm:text-center min-w-0">
+              <div className="min-w-0 pr-2 sm:pr-0">
+                <span className="text-[11px] sm:text-xs font-tech text-slate-400 uppercase font-bold tracking-wider block">
+                  REGISTRATION STATUS
+                </span>
+                <span className="text-[11px] font-tech text-amber-300/80 block sm:hidden mt-0.5 font-semibold">
+                  Slots Filling Fast
+                </span>
               </div>
-              <span className="text-[10px] sm:text-[11px] font-tech text-amber-300/80 mt-0.5 sm:mt-1 font-semibold">
+              <div className="text-lg xs:text-xl sm:text-3xl font-heading font-black text-amber-400 sm:mt-1 sm:mb-1 uppercase flex items-center gap-1.5 shrink-0">
+                <Flame className="w-4 h-4 text-orange-500 animate-pulse sm:hidden" />
+                <span>GETTING FULL</span>
+              </div>
+              <span className="text-[10px] sm:text-[11px] font-tech text-amber-300/80 hidden sm:block font-semibold">
                 Slots Filling Fast
               </span>
             </div>
 
             {/* Metric 3: Match Allocation */}
-            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 text-center flex flex-col justify-between">
-              <span className="text-[10px] sm:text-[11px] font-tech text-slate-400 uppercase font-bold tracking-wider">
-                MATCH FORMAT
-              </span>
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-heading font-black text-emerald-400 mt-1 sm:mt-2">
+            <div className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-black/60 border border-amber-500/30 flex sm:flex-col items-center sm:items-center justify-between sm:justify-between text-left sm:text-center min-w-0">
+              <div className="min-w-0 pr-2 sm:pr-0">
+                <span className="text-[11px] sm:text-xs font-tech text-slate-400 uppercase font-bold tracking-wider block">
+                  MATCH FORMAT
+                </span>
+                <span className="text-[11px] font-tech text-emerald-300/80 block sm:hidden mt-0.5">
+                  2 Matches (48 Each)
+                </span>
+              </div>
+              <div className="text-2xl sm:text-4xl font-heading font-black text-emerald-400 sm:mt-1 sm:mb-1 shrink-0">
                 SOLO BR
               </div>
-              <span className="text-[10px] sm:text-[11px] font-tech text-emerald-300/80 mt-0.5 sm:mt-1">
+              <span className="text-[10px] sm:text-[11px] font-tech text-emerald-300/80 hidden sm:block">
                 2 Matches (48 Each)
               </span>
             </div>

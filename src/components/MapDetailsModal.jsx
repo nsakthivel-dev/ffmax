@@ -158,17 +158,17 @@ export default function MapDetailsModal({ map, slotData, isOpen, onClose, onSele
                 </div>
 
                 <div className="grid grid-cols-3 gap-1.5 xs:gap-2 text-center my-3 font-tech">
-                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20 min-w-0">
                     <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Capacity</span>
                     <span className="text-sm xs:text-base font-heading font-black text-white">96</span>
                   </div>
-                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20 min-w-0">
                     <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Status</span>
-                    <span className="text-xs xs:text-sm font-heading font-black text-amber-400 uppercase">GETTING FULL</span>
+                    <span className="text-[11px] xs:text-xs sm:text-sm font-heading font-black text-amber-400 uppercase truncate block">GETTING FULL</span>
                   </div>
-                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20">
+                  <div className="p-1.5 xs:p-2 rounded-lg sm:rounded-xl bg-[#1c120a] border border-amber-500/20 min-w-0">
                     <span className="text-[9px] xs:text-[10px] text-slate-400 block uppercase">Format</span>
-                    <span className="text-sm xs:text-base font-heading font-black text-emerald-400">SOLO BR</span>
+                    <span className="text-sm xs:text-base font-heading font-black text-emerald-400 truncate block">SOLO BR</span>
                   </div>
                 </div>
 
