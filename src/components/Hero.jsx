@@ -55,7 +55,7 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
             </div>
 
             <p className="mt-3 sm:mt-4 text-xs sm:text-base text-slate-300 font-tech tracking-wide max-w-2xl mx-auto lg:mx-0 leading-relaxed drop-shadow-sm">
-              The premier battle royale showdown. A single 96-player registration pool on Bermuda, divided into two separate 48-player matches with ₹1,000 cash prizes for champions.
+              The premier battle royale showdown. A single 96-player registration pool on Bermuda, divided into two separate 48-player matches with ₹1,000 cash prizes for champions. Tournament kicks off this <strong className="text-amber-400 font-bold uppercase">Monday at 8:00 PM IST</strong>!
             </p>
 
             {/* Asymmetrical High-Impact Telemetry HUD Cards (Displaying 96 Max Capacity, 2 Matches & ₹2000 Purse) */}
@@ -126,7 +126,7 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
 
           {/* Right Column: Weapon Crate / Holopad Poster Showcase */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group max-w-[280px] xs:max-w-xs sm:max-w-md w-full">
+            <div className="relative group max-w-[280px] xs:max-w-[300px] sm:max-w-[340px] lg:max-w-[360px] w-full">
               
               {/* Outer Neon Glow Halo */}
               <div className="absolute -inset-2 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-3xl blur-xl opacity-60 group-hover:opacity-95 transition duration-500 group-hover:scale-105" />
@@ -138,17 +138,17 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
                 <div className="p-2.5 bg-gradient-to-r from-[#1b1109] via-[#24170e] to-[#120b06] border-b border-amber-500/35 flex items-center justify-between text-[11px] font-tech">
                   <div className="flex items-center gap-1.5 font-bold text-amber-400">
                     <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                    <span>OFFICIAL TOURNAMENT ASSET</span>
+                    <span>OFFICIAL TOURNAMENT POSTER</span>
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono tracking-wider">INTEL // VERIFIED</span>
                 </div>
 
-                {/* Aspect ratio preserved 1:1 image container */}
-                <div className="relative aspect-square w-full overflow-hidden bg-black/80">
+                {/* Aspect ratio preserved 9:16 image container */}
+                <div className="relative aspect-[9/15] w-full overflow-hidden bg-black/90">
                   <img
                     src={TOURNAMENT_CONFIG.poster.src}
                     alt={TOURNAMENT_CONFIG.poster.alt}
-                    className="w-full h-full object-contain transform group-hover:scale-[1.03] transition-transform duration-500"
+                    className="w-full h-full object-cover sm:object-contain transform group-hover:scale-[1.02] transition-transform duration-500"
                     loading="eager"
                   />
                   
@@ -157,7 +157,7 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
 
                   {/* Hover Overlay with View Button */}
                   <div 
-                    onClick={onOpenPoster}
+                    onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
                     className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end p-6 cursor-pointer"
                   >
                     <button
@@ -172,20 +172,20 @@ export default function Hero({ onOpenPoster, onSelectMatch }) {
                 </div>
 
                 {/* Tactical Telemetry Strip under the poster */}
-                <div className="px-4 py-3 bg-gradient-to-r from-[#170f09] to-[#0d0905] border-t border-amber-500/35 flex items-center justify-between text-xs font-tech">
+                <div className="px-3.5 py-2.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#170f09] to-[#0d0905] border-t border-amber-500/35 flex items-center justify-between text-xs font-tech">
                   <div>
-                    <span className="text-slate-400">Mode:</span>{' '}
-                    <span className="text-amber-400 font-bold">{TOURNAMENT_CONFIG.stats.format}</span>
+                    <span className="text-slate-400">Entry:</span>{' '}
+                    <span className="text-amber-400 font-bold">₹40</span>
                   </div>
                   <div className="h-4 w-px bg-amber-500/30" />
                   <div>
-                    <span className="text-slate-400">Winner:</span>{' '}
-                    <span className="text-emerald-400 font-bold">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()}/match</span>
+                    <span className="text-slate-400">Prize:</span>{' '}
+                    <span className="text-emerald-400 font-bold">₹1,000/match</span>
                   </div>
                   <div className="h-4 w-px bg-amber-500/30" />
                   <button
-                    onClick={onOpenPoster}
-                    className="btn-tactical text-amber-300 hover:text-white font-bold underline decoration-amber-400 underline-offset-2 transition-colors uppercase"
+                    onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
+                    className="btn-tactical text-amber-300 hover:text-white font-bold underline decoration-amber-400 underline-offset-2 transition-colors uppercase text-[11px]"
                   >
                     FULL VIEW
                   </button>

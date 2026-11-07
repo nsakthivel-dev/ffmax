@@ -28,9 +28,9 @@ export default function PromotionPoster({ onOpenPoster }) {
         {/* Main Grid: Left Large Poster & Right Key Highlights */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left: Poster Presentation with 1:1 Aspect Ratio & Cyber Frame */}
+          {/* Left: Poster Presentation with Aspect Ratio & Cyber Frame */}
           <div className="lg:col-span-6 flex justify-center">
-            <div className="relative w-full max-w-md sm:max-w-lg group">
+            <div className="relative w-full max-w-[320px] xs:max-w-[340px] sm:max-w-[380px] group">
               
               {/* Vibrant Back Glow */}
               <div className="absolute -inset-2 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 rounded-3xl blur-2xl opacity-60 group-hover:opacity-95 transition duration-500" />
@@ -45,19 +45,19 @@ export default function PromotionPoster({ onOpenPoster }) {
                     <span>VERIFIED OFFICIAL ASSET</span>
                   </div>
                   <span className="text-[10px] text-slate-400 font-mono px-2 py-0.5 rounded bg-black/60 border border-amber-500/20">
-                    RES: 1:1 HD
+                    RES: 9:16 HD
                   </span>
                 </div>
 
-                {/* 1:1 Aspect Ratio Box */}
+                {/* Aspect Ratio Box */}
                 <div 
-                  onClick={onOpenPoster}
-                  className="relative aspect-square w-full cursor-pointer overflow-hidden bg-black/90 flex items-center justify-center group"
+                  onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
+                  className="relative aspect-[9/15] w-full cursor-pointer overflow-hidden bg-black/90 flex items-center justify-center group"
                 >
                   <img
                     src={TOURNAMENT_CONFIG.poster.src}
                     alt={TOURNAMENT_CONFIG.poster.alt}
-                    className="w-full h-full object-contain transform group-hover:scale-[1.03] transition-transform duration-500"
+                    className="w-full h-full object-cover sm:object-contain transform group-hover:scale-[1.02] transition-transform duration-500"
                     loading="lazy"
                   />
 
@@ -73,7 +73,7 @@ export default function PromotionPoster({ onOpenPoster }) {
                 {/* Bottom Action Bar */}
                 <div className="p-3.5 sm:p-4 bg-gradient-to-r from-[#170e08] to-[#0d0905] border-t border-amber-500/35 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-2.5 sm:gap-3">
                   <button
-                    onClick={onOpenPoster}
+                    onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
                     className="btn-tactical flex-1 min-w-[140px] px-4 py-3 sm:py-3.5 rounded-xl text-xs font-black font-heading tracking-wider text-black bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-md transition-all flex items-center justify-center gap-2 uppercase min-h-[44px]"
                   >
                     <ZoomIn className="w-4 h-4 shrink-0" />

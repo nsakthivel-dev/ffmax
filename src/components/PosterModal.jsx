@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { X, Download } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
-export default function PosterModal({ isOpen, onClose }) {
+export default function PosterModal({ isOpen, onClose, poster }) {
+  const activePoster = poster || TOURNAMENT_CONFIG.poster;
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -42,8 +44,8 @@ export default function PosterModal({ isOpen, onClose }) {
           </div>
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <a
-              href={TOURNAMENT_CONFIG.poster.src}
-              download={TOURNAMENT_CONFIG.poster.downloadName}
+              href={activePoster.src}
+              download={activePoster.downloadName || 'tournament-poster.jpeg'}
               className="btn-tactical inline-flex items-center justify-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-xl text-xs font-black bg-gradient-to-r from-amber-400 to-orange-500 text-black shadow-md uppercase min-h-[36px]"
               title="Download Poster"
             >
@@ -63,8 +65,8 @@ export default function PosterModal({ isOpen, onClose }) {
         {/* Modal Image Body */}
         <div className="relative flex-1 p-2 sm:p-6 flex items-center justify-center bg-black/90 overflow-auto">
           <img
-            src={TOURNAMENT_CONFIG.poster.src}
-            alt={TOURNAMENT_CONFIG.poster.alt}
+            src={activePoster.src}
+            alt={activePoster.alt || "Free Fire MAX Tournament Poster"}
             className="max-h-[75vh] w-auto max-w-full object-contain rounded-xl border border-amber-500/30 shadow-2xl"
           />
         </div>
@@ -76,9 +78,10 @@ export default function PosterModal({ isOpen, onClose }) {
           </div>
           <div className="flex items-center gap-3 sm:gap-4 text-[11px] sm:text-xs">
             <span>Format: <strong className="text-white">{TOURNAMENT_CONFIG.stats.format}</strong></span>
-            <span>Winner: <strong className="text-emerald-400 font-heading">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()} / Match (₹{TOURNAMENT_CONFIG.stats.totalPrizePool.toLocaleString()} Total)</strong></span>
+            <span>Winner: <strong className="text-emerald-400 font-heading">₹{TOURNAMENT_CONFIG.stats.winnerPrizePerMatch.toLocaleString()} / Match</strong></span>
           </div>
         </div>
+
       </div>
     </div>
   );

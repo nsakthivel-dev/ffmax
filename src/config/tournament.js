@@ -22,11 +22,18 @@ export const TOURNAMENT_CONFIG = {
     alt: "Free Fire MAX Official Tournament Logo",
   },
   
-  // Promotional Poster
+  // Promotional Poster (Home Page Poster)
   poster: {
-    src: "/assets/promotion/Promotion.jpeg",
-    alt: "Free Fire MAX Tournament Official Promotion Poster - FFM Mukesh x RC Innovations",
+    src: "/assets/promotion/home.jpeg",
+    alt: "Free Fire MAX Tournament Official Promotion Poster - FFM Mukesh",
     downloadName: "FFM-FreeFireMAX-Tournament-Poster.jpeg"
+  },
+
+  // Esports Command Center Poster
+  commandCenterPoster: {
+    src: "/assets/promotion/last.jpeg",
+    alt: "Free Fire MAX Esports Command Center Official Banner - FFM Mukesh",
+    downloadName: "FFM-Esports-Command-Center-Banner.jpeg"
   },
 
   // Key Tournament Metrics - Single Registration Pool (96 Total Slots)
@@ -54,8 +61,11 @@ export const TOURNAMENT_CONFIG = {
 
   // Tournament Schedule / Countdown Target Date
   schedule: {
-    targetDate: "2026-11-20T18:00:00+05:30", // Change to null or empty string to test the fallback state
-    fallbackMessage: "TOURNAMENT DATE WILL BE ANNOUNCED.",
+    targetDate: "2026-11-09T20:00:00+05:30", // Tournament: Monday 8:00 PM IST
+    day: "MONDAY",
+    time: "8:00 PM IST",
+    displaySchedule: "MONDAY • 8:00 PM IST",
+    fallbackMessage: "TOURNAMENT: MONDAY 8:00 PM IST",
     timeZone: "IST (UTC+5:30)"
   },
 

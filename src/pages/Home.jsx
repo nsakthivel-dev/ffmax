@@ -13,10 +13,12 @@ import PosterModal from '../components/PosterModal';
 import BulletFx from '../components/BulletFx';
 
 export default function Home({ onSelectMatch }) {
-  const [isPosterModalOpen, setIsPosterModalOpen] = useState(false);
+  const [selectedPoster, setSelectedPoster] = useState(null);
 
-  const handleOpenPoster = () => setIsPosterModalOpen(true);
-  const handleClosePoster = () => setIsPosterModalOpen(false);
+  const handleOpenPoster = (poster = null) => {
+    setSelectedPoster(poster || true);
+  };
+  const handleClosePoster = () => setSelectedPoster(null);
 
   return (
     <div className="min-h-screen text-slate-100 flex flex-col selection:bg-amber-500 selection:text-black relative">
@@ -34,8 +36,8 @@ export default function Home({ onSelectMatch }) {
         {/* Cinematic Hero Section */}
         <Hero onOpenPoster={handleOpenPoster} onSelectMatch={onSelectMatch} />
 
-        {/* Tournament Metrics & Structure */}
-        <TournamentStats onSelectMatch={onSelectMatch} />
+        {/* Tournament Metrics & Structure (ESPORTS COMMAND CENTER) */}
+        <TournamentStats onSelectMatch={onSelectMatch} onOpenPoster={handleOpenPoster} />
 
         {/* Official Promotional Poster Showcase */}
         <PromotionPoster onOpenPoster={handleOpenPoster} />
@@ -60,7 +62,11 @@ export default function Home({ onSelectMatch }) {
       <Footer onOpenPoster={handleOpenPoster} />
 
       {/* Enlarged Tournament Poster Lightbox Modal */}
-      <PosterModal isOpen={isPosterModalOpen} onClose={handleClosePoster} />
+      <PosterModal 
+        isOpen={Boolean(selectedPoster)} 
+        onClose={handleClosePoster} 
+        poster={typeof selectedPoster === 'object' && selectedPoster ? selectedPoster : undefined}
+      />
     </div>
   );
 }

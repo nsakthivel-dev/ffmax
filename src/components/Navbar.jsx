@@ -57,10 +57,13 @@ export default function Navbar({ onOpenPoster, onSelectMatch }) {
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5 text-amber-400 font-bold uppercase tracking-wider">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-            <span>COMMUNITY ESPORTS TOURNAMENT // SEASON 2026</span>
+            <span>COMMUNITY ESPORTS TOURNAMENT</span>
           </span>
           <span className="text-amber-500/40">|</span>
-          <span className="text-slate-300 font-semibold tracking-widest">FORMAT: SOLO BATTLE ROYALE</span>
+          <span className="text-amber-300 font-extrabold tracking-widest uppercase flex items-center gap-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+            <span>TOURNAMENT: MONDAY 8:00 PM IST</span>
+          </span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-amber-300/80 tracking-widest font-bold">HOST: FFM MUKESH</span>
