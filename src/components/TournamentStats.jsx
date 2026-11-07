@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, Map, Users, Award, ShieldCheck, Gamepad2, Sparkles, ChevronRight, Zap, Target, ZoomIn, Clock } from 'lucide-react';
+import { Trophy, Map, Users, Award, ShieldCheck, Gamepad2, Sparkles, ChevronRight, Zap, Target, Clock } from 'lucide-react';
 import { TOURNAMENT_CONFIG } from '../config/tournament';
 
 export default function TournamentStats({ onSelectMatch, onOpenPoster }) {
@@ -124,12 +124,12 @@ export default function TournamentStats({ onSelectMatch, onOpenPoster }) {
           );
         })()}
 
-        {/* Asymmetrical Layout: Grand Prize Vault, Official Command Center Banner & Telemetry Matrix */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        {/* Asymmetrical Layout: Left Grand Prize Vault & Right 2x2 Telemetry Matrix */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Left Column (5 Cols on lg, 4 Cols on xl): Grand Championship Prize Vault */}
-          <div className="lg:col-span-6 xl:col-span-4 flex flex-col">
-            <div className="hud-card corner-bracket rounded-2xl sm:rounded-3xl p-4 xs:p-5 sm:p-6 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-5">
+          {/* Left Column (5 Cols): Grand Championship Prize Vault */}
+          <div className="lg:col-span-5 flex flex-col">
+            <div className="hud-card corner-bracket rounded-2xl sm:rounded-3xl p-4 xs:p-5 sm:p-7 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-5">
               
               {/* Fiery Top Accent Ribbon */}
               <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-400" />
@@ -235,112 +235,43 @@ export default function TournamentStats({ onSelectMatch, onOpenPoster }) {
             </div>
           </div>
 
-          {/* Middle Column (6 Cols on lg, 4 Cols on xl): Official Esports Command Center Banner (last.jpeg) */}
-          <div className="lg:col-span-6 xl:col-span-4 flex flex-col justify-center">
-            <div className="hud-card corner-bracket rounded-2xl sm:rounded-3xl p-4 xs:p-5 sm:p-6 flex-1 flex flex-col justify-between relative overflow-hidden border-2 border-amber-500/50 shadow-2xl group gap-4">
-              
-              {/* Fiery Top Accent Ribbon */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-orange-500 via-amber-400 to-yellow-400" />
-
-              {/* Background Ambient Glow */}
-              <div className="absolute -top-16 -right-16 w-56 h-56 bg-orange-600/15 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700 pointer-events-none" />
-
-              {/* Header Badge */}
-              <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-400/40 text-[10px] sm:text-xs font-tech font-bold text-amber-300 uppercase tracking-widest">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                  <span>COMMAND CENTER BANNER</span>
-                </div>
-                <span className="text-[10px] sm:text-xs font-mono text-amber-300 font-bold px-2.5 py-1 rounded-full bg-amber-950/60 border border-amber-500/30">
-                  OFFICIAL INTEL
-                </span>
-              </div>
-
-              {/* Poster 9:16 Aspect Ratio Frame */}
-              <div 
-                onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.commandCenterPoster)}
-                className="relative aspect-[9/14] sm:aspect-[9/15] w-full rounded-2xl overflow-hidden bg-black/90 border border-amber-500/30 cursor-pointer group/poster flex items-center justify-center max-w-[340px] mx-auto shadow-inner"
-              >
-                <img
-                  src={TOURNAMENT_CONFIG.commandCenterPoster?.src || "/assets/promotion/last.jpeg"}
-                  alt={TOURNAMENT_CONFIG.commandCenterPoster?.alt || "Free Fire MAX Esports Command Center Poster"}
-                  className="w-full h-full object-cover sm:object-contain transform group-hover/poster:scale-[1.02] transition-transform duration-500"
-                  loading="lazy"
-                />
-
-                {/* Tactical HUD Grid Lines */}
-                <div className="absolute inset-0 bg-tactical-grid opacity-20 pointer-events-none" />
-
-                {/* Interactive Click Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover/poster:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end p-5">
-                  <button
-                    type="button"
-                    className="btn-tactical px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-black font-heading font-black text-xs sm:text-sm tracking-wider shadow-2xl flex items-center gap-2 transform translate-y-2 group-hover/poster:translate-y-0 transition-all uppercase"
-                  >
-                    <ZoomIn className="w-4 h-4" />
-                    <span>ENLARGE BANNER</span>
-                  </button>
-                  <p className="mt-1.5 text-xs text-amber-200 font-tech">Click anywhere to view full HD poster</p>
-                </div>
-              </div>
-
-              {/* Action & Telemetry Strip */}
-              <div className="pt-3 border-t border-amber-500/20 flex items-center justify-between text-xs font-tech">
-                <div className="flex items-center gap-2">
-                  <span className="text-slate-400">Entry: <strong className="text-amber-400">₹40</strong></span>
-                  <span className="text-amber-500/30">|</span>
-                  <span className="text-slate-400">Prize: <strong className="text-emerald-400">₹1,000</strong></span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.commandCenterPoster)}
-                  className="btn-tactical inline-flex items-center gap-1 text-amber-300 hover:text-white font-bold underline decoration-amber-400 underline-offset-2 transition-colors uppercase text-[11px]"
-                >
-                  <span>FULL VIEW</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-amber-400" />
-                </button>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Right Column: Telemetry HUD Matrix & Fair Play Notice */}
-          <div className="lg:col-span-12 xl:col-span-4 flex flex-col justify-between gap-4">
+          {/* Right Column (7 Cols): 2x2 Telemetry HUD Matrix */}
+          <div className="lg:col-span-7 flex flex-col justify-between gap-4">
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-3.5 sm:gap-4 flex-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
               {statTiles.map((tile) => {
                 const Icon = tile.icon;
                 return (
                   <div
                     key={tile.id}
-                    className="hud-card corner-bracket p-4 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-amber-400/60"
+                    className="hud-card corner-bracket p-5 sm:p-6 rounded-2xl flex flex-col justify-between group hover:border-amber-400/60"
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className={`p-2.5 rounded-xl bg-gradient-to-br ${tile.color} text-black font-black shadow-lg group-hover:scale-110 transition-transform`}>
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.2]" />
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`p-3 rounded-xl bg-gradient-to-br ${tile.color} text-black font-black shadow-lg group-hover:scale-110 transition-transform`}>
+                          <Icon className="w-5 h-5 stroke-[2.2]" />
                         </div>
                         <span className="text-[10px] font-tech font-bold px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-300 tracking-wider">
                           {tile.badge}
                         </span>
                       </div>
 
-                      <div className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-wide group-hover:text-amber-300 transition-colors">
+                      <div className="text-4xl sm:text-5xl font-display font-extrabold text-white tracking-wide group-hover:text-amber-300 transition-colors">
                         {tile.value}
                       </div>
 
-                      <div className="text-xs sm:text-sm font-heading font-bold text-amber-400 mt-1 uppercase tracking-wider">
+                      <div className="text-sm font-heading font-bold text-amber-400 mt-1 uppercase tracking-wider">
                         {tile.label}
                       </div>
 
-                      <div className="text-[11px] sm:text-xs font-tech text-slate-300 mt-1">
+                      <div className="text-xs font-tech text-slate-300 mt-1">
                         {tile.sublabel}
                       </div>
                     </div>
 
-                    <div className="mt-3 pt-2.5 border-t border-amber-500/20 flex items-center justify-between text-[10px] sm:text-[11px] font-tech text-slate-400">
+                    <div className="mt-4 pt-3 border-t border-amber-500/20 flex items-center justify-between text-[11px] font-tech text-slate-400">
                       <span>{tile.detail}</span>
-                      <Target className="w-3 h-3 text-amber-400/60" />
+                      <Target className="w-3.5 h-3.5 text-amber-400/60" />
                     </div>
                   </div>
                 );
@@ -348,25 +279,25 @@ export default function TournamentStats({ onSelectMatch, onOpenPoster }) {
             </div>
 
             {/* Fair Play Notice Bar */}
-            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#170e08]/90 via-[#22160d]/90 to-[#170e08]/90 border border-amber-500/35 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left shadow-lg">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-400">
-                  <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className="p-4 rounded-2xl bg-gradient-to-r from-[#170e08]/90 via-[#22160d]/90 to-[#170e08]/90 border border-amber-500/35 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-lg">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-400">
+                  <ShieldCheck className="w-5 h-5" />
                 </div>
-                <div className="min-w-0 text-left">
-                  <div className="font-heading text-xs sm:text-sm font-bold text-white tracking-wide">
+                <div>
+                  <div className="font-heading text-sm font-bold text-white tracking-wide">
                     ONE REGISTRATION PER PLAYER POLICY
                   </div>
-                  <div className="text-[11px] sm:text-xs text-slate-300 font-tech">
-                    96 total slots • 2 matches of 48 • Duplicate UIDs prohibited.
+                  <div className="text-xs text-slate-300 font-tech">
+                    Every competitor is permitted to register once for the 96-player tournament. Duplicate registrations with the same Free Fire MAX UID are strictly prohibited.
                   </div>
                 </div>
               </div>
               <a
                 href="#rules"
-                className="btn-tactical shrink-0 px-3.5 py-1.5 rounded-xl text-xs font-bold font-tech tracking-wider text-amber-300 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 transition-colors uppercase"
+                className="btn-tactical shrink-0 px-4 py-2 rounded-xl text-xs font-bold font-tech tracking-wider text-amber-300 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 transition-colors uppercase"
               >
-                Rules
+                Read All Rules
               </a>
             </div>
 
