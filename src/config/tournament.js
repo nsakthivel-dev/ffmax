@@ -22,11 +22,18 @@ export const TOURNAMENT_CONFIG = {
     alt: "Free Fire MAX Official Tournament Logo",
   },
   
-  // Promotional Poster (Home Page Poster)
+  // Promotional Poster (Home Hero Poster)
   poster: {
     src: "/assets/promotion/home.jpeg",
     alt: "Free Fire MAX Tournament Official Promotion Poster - FFM Mukesh",
     downloadName: "FFM-FreeFireMAX-Tournament-Poster.jpeg"
+  },
+
+  // Official Campaign Poster (Promotional Poster Section)
+  campaignPoster: {
+    src: "/assets/promotion/last.jpeg",
+    alt: "Free Fire MAX Tournament Official Campaign Poster - FFM Mukesh",
+    downloadName: "FFM-FreeFireMAX-Campaign-Poster.jpeg"
   },
 
   // Esports Command Center Poster

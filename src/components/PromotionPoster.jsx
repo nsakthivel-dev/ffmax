@@ -51,12 +51,12 @@ export default function PromotionPoster({ onOpenPoster }) {
 
                 {/* Aspect Ratio Box */}
                 <div 
-                  onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
+                  onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.campaignPoster || TOURNAMENT_CONFIG.poster)}
                   className="relative aspect-[9/15] w-full cursor-pointer overflow-hidden bg-black/90 flex items-center justify-center group"
                 >
                   <img
-                    src={TOURNAMENT_CONFIG.poster.src}
-                    alt={TOURNAMENT_CONFIG.poster.alt}
+                    src={TOURNAMENT_CONFIG.campaignPoster?.src || "/assets/promotion/last.jpeg"}
+                    alt={TOURNAMENT_CONFIG.campaignPoster?.alt || "Free Fire MAX Tournament Campaign Poster - FFM Mukesh"}
                     className="w-full h-full object-cover sm:object-contain transform group-hover:scale-[1.02] transition-transform duration-500"
                     loading="lazy"
                   />
@@ -73,7 +73,7 @@ export default function PromotionPoster({ onOpenPoster }) {
                 {/* Bottom Action Bar */}
                 <div className="p-3.5 sm:p-4 bg-gradient-to-r from-[#170e08] to-[#0d0905] border-t border-amber-500/35 flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-2.5 sm:gap-3">
                   <button
-                    onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.poster)}
+                    onClick={() => onOpenPoster && onOpenPoster(TOURNAMENT_CONFIG.campaignPoster || TOURNAMENT_CONFIG.poster)}
                     className="btn-tactical flex-1 min-w-[140px] px-4 py-3 sm:py-3.5 rounded-xl text-xs font-black font-heading tracking-wider text-black bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 shadow-md transition-all flex items-center justify-center gap-2 uppercase min-h-[44px]"
                   >
                     <ZoomIn className="w-4 h-4 shrink-0" />
@@ -81,8 +81,8 @@ export default function PromotionPoster({ onOpenPoster }) {
                   </button>
 
                   <a
-                    href={TOURNAMENT_CONFIG.poster.src}
-                    download={TOURNAMENT_CONFIG.poster.downloadName}
+                    href={TOURNAMENT_CONFIG.campaignPoster?.src || "/assets/promotion/last.jpeg"}
+                    download={TOURNAMENT_CONFIG.campaignPoster?.downloadName || "FFM-Tournament-Campaign-Poster.jpeg"}
                     className="btn-tactical px-4 py-3 sm:py-3.5 rounded-xl text-xs font-bold font-heading tracking-wider text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 transition-colors flex items-center justify-center gap-2 uppercase min-h-[44px]"
                   >
                     <Download className="w-4 h-4 shrink-0" />
